@@ -1,0 +1,24 @@
+/* Global Styles */
+
+h1, h2, h3 , h4, h5, h6 {
+	font-weight: bold;
+}
+
+#group-selector {
+	margin-top: 30px;
+}
+
+#group-selector  select{
+	margin: 0;
+	width: 85%;
+	height: 30px;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	line-height: 30px;
+	color:  #555555;
+}
+
+#footer {
+	border-top: 1px solid #dddddd;
+	padding: 10px;
+}

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ukr">
+   <head>
+     <meta charset="UTF-8".>
+	 <title>  Сервіс обліку студентів </title>
+	 <meta name="description" value="Система Обліку Студентів Навчального Закладу">
+	 
+	 <!-- Include styles -->
+	 <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	 <link rel="stylesheet"
+			  href="./css/main.css">
+	
+   </head>
+   
+   <body>
+   <!-- Start Conrainer -->
+     <div class="container">
+	   
+	   <!-- Start Header -->
+	   <div class="row" id="header">
+	     
+		 <!-- Logo -->
+		 <div class="col-xs-8">
+            <h1> Сервіс Обліку Студентів	</h1> 
+		 </div>
+		 
+		 <!-- Group menu selector -->
+		 <div class="col-xs-4" id="group-selector">
+		    <strong> Група:  </strong>
+		    <select class="custom-select">
+			  <option value=""> Усі студенти </option>
+			  <option value="">457 Група, Романчук Сергій (№ 25)</option>
+			  <option value="">457 Група, Романчук Максим (№ 24)</option>
+			  <option value="">457 Група, Гнітецький Ярослав (№ 02)</option>
+			</select>
+		 </div>
+		 
+	   </div>
+	   <!-- End Header -->
+	   
+	   <!-- Start Subheader -->
+	   <div class="row" id="sub-header">
+		  <div class="col-xs-12">
+		    <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="#">Студенти</a></li>
+              <li role="presentation"><a href="#">Відвідування</a></li>
+              <li role="presentation" class="active"><a href="#">Групи</a></li>
+            </ul>
+		  </div>
+		</div>
+	   <!-- End Subheader -->
+	   
+	   <!-- Start Main Page Content -->
+	   
+	   <!-- Додати групу -->
+	   <div class="row">
+	     <div class="col-xs-1">
+		      <h2> Групи </h2>
+			</div>
+		    <div class="col-xs-1 " id="group-add">
+		      <!-- Додати групу -->
+		      <a class="btn btn-primary" href="#" role="button">Додати Групу</a>
+		    </div>
+	   </div>
+	   
+	   <div class="row" id="content-column">
+	     <div class="col-xs-12" id="content-column">
+		    						
+		   <!-- Start Studenrs Listing -->
+		   <table class="table table-hover table-striped">
+		     <thead>
+			 <tr>
+			   <th> <a href="#"> # </a></th>
+			   <th> <a href="#">Назва </a></th>
+			   <th> <a href="#">Староста </a></th>
+			   <th> <a href="#">Дії: </a></th>
+			 </tr>
+			 </thead>
+		     <tbody>
+			   <tr>
+			     <td><a href="#"> 1 </a></td>
+			     <td><a href="#"> 457 </a></td>
+			     <td><a href="#"> Романчук Сергій </a></td>
+			     <td>
+				   <div class = "btn-group">
+   
+                          <button type = "button" 
+						               class = "btn btn-default dropdown-toggle" data-toggle = "dropdown"> Дія
+                            <span class = "caret"></span>
+						  </button>
+   
+						  <ul class = "dropdown-menu" role = "menu">
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Відвідування</a>
+							</li>
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Редагувати</a>
+							</li >
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#"> Видалити</a>
+							</li>
+      
+						  </ul>
+						</div>
+				 </td>
+			   </tr>
+			   <tr>
+			     <td><a href="#"> 2 </a></td>
+			     <td><a href="#"> 457 </a></td>
+			     <td><a href="#"> Романчук Максим </a></td>
+			     <td>
+				   <div class = "btn-group">
+   
+                          <button type = "button" 
+						               class = "btn btn-default dropdown-toggle" data-toggle = "dropdown"> Дія
+                            <span class = "caret"></span>
+						  </button>
+   
+						  <ul class = "dropdown-menu" role = "menu">
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Відвідування</a>
+							</li>
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Редагувати</a>
+							</li >
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#"> Видалити</a>
+							</li>
+      
+						  </ul>
+						</div>
+				 </td>
+			   </tr>
+			   <tr>
+			     <td><a href="#"> 3</a></td>
+			     <td><a href="#"> 457 </a></td>
+			     <td><a href="#"> Гнітецький Ярослав </a></td>
+			     <td>
+				   <div class = "btn-group">
+   
+                          <button type = "button" 
+						               class = "btn btn-default dropdown-toggle" data-toggle = "dropdown"> Дія
+                            <span class = "caret"></span>
+						  </button>
+   
+						  <ul class = "dropdown-menu" role = "menu">
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Відвідування</a>
+							</li>
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#">Редагувати</a>
+							</li >
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "#"> Видалити</a>
+							</li>
+      
+						  </ul>
+						</div>
+				 </td>
+			   </tr>
+			 </tbody>
+		   </table>
+		   <!-- Start Studenrs Listing -->
+		   <nav>
+			    <ul class = "pagination">
+				  <li><a href = "#">&laquo;</a></li>
+				  <li class = "active"><a href = "#">1</a></li>
+				  <li><a href = "#">2</a></li>
+				  <li><a href = "#">Далі</a></li>
+				  <li><a href = "#">&raquo;</a></li>
+				</ul>
+		   </nav>
+		  </div>
+		 </div>
+		 <!-- End Main Page Content -->
+		 
+		  <!-- Start Footer -->
+	     <div class="row" id="footer">
+	       <div class="col-xs-12">
+		   &copy 2020 Сервіс Бази Студентів
+		   </div>
+	     </div>
+	     <!-- End Footer -->
+	   
+	   </div>
+	   <!-- End Conrainer -->
+	   
+   <!-- Javascript Section -->
+	 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js">
+ </script>
+	 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"> 
+ </script>
+   </body>
+</html>

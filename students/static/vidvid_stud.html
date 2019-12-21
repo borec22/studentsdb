@@ -1,0 +1,153 @@
+<!doctype html>
+
+<html lan="ukr">
+  <head>
+    <meta charset="UTF-8"/>
+    <title> Сервіс обліку студентів </title>
+	<meta	name="description"
+				value="Сервіс Обліку Студентів Навчального Закладу"> 
+				
+	<!-- Include styles -->
+	 <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	 <link rel="stylesheet"
+			  href="./css/main.css">
+  </head> 
+  <body>
+    <div class="container">
+	  <!-- Start Header -->
+      <div class="row" id="header" >
+		
+		<!-- Start Logo -->
+	    <div class="col-xs-8" >
+		  <h1> Сервіс Обліку Студентів </h1>
+		</div>
+		
+		<!-- Start Select Group -->
+		<div class="col-xs-4" id="group-selector">
+		    <strong> Група:  </strong>
+		    <select class="custom-select">
+			  <option value=""> Усі студенти </option>
+			  <option value="">457 Група, Романчук Сергій (№ 25)</option>
+			  <option value="">457 Група, Романчук Максим (№ 24)</option>
+			  <option value="">457 Група, Гнітецький Ярослав (№ 02)</option>
+			</select>
+		</div>
+	
+	  </div>
+	  <!-- End Header -->
+	  
+	  <!-- Start SubHeader -->
+	  <div class="row" id="sub-header">  
+	    <div class="col-xs-12">
+		  <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="#">Студенти</a></li>
+              <li role="presentation" class="active"><a href="#">Відвідування</a></li>
+              <li role="presentation" ><a href="#">Групи</a></li>
+            </ul>
+		</div>
+	  </div>
+	  <!-- End SubHeader -->
+	  
+	  <!-- Start Main Page Content -->
+	    <div class="row" id="main-conrent">
+		  <div class="col-xs-12">
+		  <h2> Облік Відвідування </h2>
+		  
+		  <!-- Start Students Listing -->
+		    <div id="month"> <strong> &larr; Грудень 2019 &rarr; </strong></div>
+		    <table class="table table-hover table-striped table-bordered">
+			  <thead>
+			    <tr>
+				  <td> # </td>
+				  <td> Студент </td>
+				  <td> Cр 1 </td> <td> Чт 2  </td> <td> Пт 3 </td> <td> Сб 4 </td> <td> Нд 5 </td> <td> Пн 6 </td>
+				  <td> Вт 7 </td>  <td> Ср 8 </td>  <td> Чт 9 </td>  <td> Пт 10 </td>  <td> Сб 11 </td>
+				  <td> Нд 12 </td>  <td> Пн 13 </td>  <td> Вт 14 </td>  <td> Ср 15 </td>  <td> Чт 16 </td>
+				  <td> Пт 17 </td>  <td> Сб 18 </td>  <td> Нд 19 </td>  <td> Пн 20 </td>  <td> Вт 21 </td> 
+				  <td> Ср 22  </td>  <td> Чт 23 </td>  <td> Пт 24  </td>  <td> Сб 25 </td>  <td> Нд 26 </td>
+				  <td> Пн 27 </td>  <td> Вт 28 </td>  <td> Ср 29 </td>  <td> Чт 30 </td>  <td>  Пт 31</td>
+				</tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+				  <td> 1 </td> 
+				  <td> Романчук Сергій </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> 
+				
+				</tr>
+				<tr>
+				  <td> 2 </td> 
+				  <td> Романчук  Максим </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> 
+				</tr>
+				<tr>
+				  <td> 3 </td> 
+				  <td> Гнітецький Ярослав </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> <td> <input type="checkbox"> </input> </td>
+				  <td> <input type="checkbox"> </input> </td> 
+				
+				</tr>
+			  </tbody>
+			</table>
+			
+		  <!-- End Students Listing -->
+		  </div>
+		</div>
+	  <!-- End Main Page Content -->
+	  
+	  <!-- Start Footer -->
+	  <div class="row" id="footer">
+	    <div class="col-xs-12">
+		&copy 2020 Сервіс Обліку Студентів
+		</div>
+	  </div>
+	  <!-- End Footer -->
+    </div>
+  </body>
+  
+</html>
