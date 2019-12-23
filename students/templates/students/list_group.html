@@ -1,0 +1,81 @@
+{% extends 'students/base.html' %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Групи{% endblock meta_title %}
+
+{% block content %}
+
+
+	   
+	   <!-- Додати групу -->
+	   <div class="row">
+	     <div class="col-xs-1">
+		      <h2> Групи </h2>
+			</div>
+		    <div class="col-xs-1 " id="group-add">
+		      <!-- Додати групу -->
+		      <a class="btn btn-primary" href="{% url 'students_add' %}" role="button">Додати Групу</a>
+		    </div>
+	   </div>
+	   
+	   <div class="row" id="content-column">
+	     <div class="col-xs-12" id="content-column">
+		    						
+		   <!-- Start Studenrs Listing -->
+		   <table class="table table-hover table-striped">
+		     <thead>
+			 <tr>
+			   <th> <a href="#"> # </a></th>
+			   <th> <a href="#">Назва </a></th>
+			   <th> <a href="#">Староста </a></th>
+			   <th> <a href="#">Дії: </a></th>
+			 </tr>
+			 </thead>
+		     <tbody>
+		       
+		       {% for group in groups %}
+			   <tr>
+			     <td><a href="#"> {{ forloop.counter }} </td>
+			     <td><a href="{% url "groups_edit" group.id %}"> {{ group.name }} </td>
+			     <td><a href="{% url "groups_edit" group.id %}"> {{ group.starosta }} </td>
+			     <td>
+				   <div class = "btn-group">
+   
+                          <button type = "button" 
+						               class = "btn btn-default dropdown-toggle" data-toggle = "dropdown"> Дія
+                            <span class = "caret"></span>
+						  </button>
+   
+						  <ul class = "dropdown-menu" role = "menu">
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "/journal/{{group.id}}">Відвідування</a>
+							</li>
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "{% url "groups_edit" group.id %}">Редагувати</a>
+							</li >
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "{% url "groups_delete" group.id %}"> Видалити</a>
+							</li>
+      
+						  </ul>
+						</div>
+				 </td>
+			   </tr> 
+	           {% endfor %}
+	           
+			 </tbody>
+		   </table>
+		   <!-- Start Studenrs Listing -->
+		   <nav>
+			    <ul class = "pagination">
+				  <li><a href = "#">&laquo;</a></li>
+				  <li class = "active"><a href = "#">1</a></li>
+				  <li><a href = "#">2</a></li>
+				  <li><a href = "#">Далі</a></li>
+				  <li><a href = "#">&raquo;</a></li>
+				</ul>
+		   </nav>
+		   
+{% endblock content %}
+		  
