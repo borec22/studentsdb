@@ -1,0 +1,109 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8"/>
+	<title> Сервіс обліку студентів </title>  
+	<meta name="description"
+		        value="Система Обліку Студентів Навчального Закладу"/>
+	<!-- Include styles -->
+	 <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	 <link rel="stylesheet"
+			  href="{{ PORTAL_URL }} {% static 'css/main.css' %}">
+	
+  </head>
+  <body>
+    <!-- Start Main Page Content -->
+	<div class="container">
+	 <div class="row" id="main-content">
+	  <h2> Форма редагування Студента </h2>
+	  <!-- Start Phorma -->
+	  <div class="col-xs-6" id="pforma">
+	    <form class="form-horizontal" id = "form">
+		  <div class="form-group">
+		     <label for="name" class="col-sm-4 control-label">Ім'я*</label>
+		     <div class="col-sm-5">
+               <input type="input" class="form-control" id="name" placeholder="">
+             </div>
+          </div>
+        <div class="form-group">
+          <label for="father" class="col-sm-4 control-label">По-батькові</label>
+          <div class="col-sm-5">
+            <input type="input" class="form-control" id="father" placeholder="">
+          </div>
+        </div>
+		<div class="form-group">
+          <label for="surname" class="col-sm-4 control-label">Прізвище*</label>
+          <div class="col-sm-5">
+            <input type="input" class="form-control" id="surname" placeholder="">
+          </div>
+        </div>
+		<div class="form-group">
+          <label for="bilet" class="col-sm-4 control-label">№ Білету*</label>
+          <div class="col-sm-5">
+            <input type="input" class="form-control" id="bilet" placeholder="">
+          </div>
+        </div>
+		<div class="form-group">
+          <label for="birthday" class="col-sm-4 control-label">Дата народження</label>
+          <div class="col-sm-5">
+            <input type="input" class="form-control" id="birthday" placeholder="">
+          </div>
+        </div>
+		<div class="form-group">
+		  
+		  <label class="col-sm-4 control-label" for="file" > Фото </label> 
+		  <input type="file" class="form-control-file col-sm-5" id="file">
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 control-label" >
+		      <label class="control-label" for="select-group-form"> Група* </label>
+		    </div>
+			<div class="col-sm-5" >
+			  <select class="custom-select form-control" id="select-group-form" >
+			    <option selected>457</option>
+			    <option value="">455</option>
+				<option value="">456</option>
+				<option value="">453</option>
+			  </select>
+			</div>
+		</div>
+		
+		<div class="form-group">
+		  <div class="col-sm-4 control-label">
+		    <label for="textarea" >Додаткові параметри</label>
+		  </div>
+		  <div class="col-sm-5 ">
+		    <textarea class="form-control" id="textarea" rows="4"></textarea>
+		  </div>
+		</div>
+  
+		
+		
+        </form>
+	  </div>
+	  <!-- End Forma -->
+	  
+	 </div>
+	 
+	 <!-- Start Bottoms -->
+	 <div class="row">
+	    <div class="form-grou col-sm-12" id="buttons">		  
+		    <button type="submit" class="btn btn-primary mb-2">Зберегти</button>
+			 <button type="button" class="btn btn-link">Скасувати</button>
+        </div>
+	  </div>
+	  
+	 <!-- End Bottoms -->
+	</div>
+	<!-- End Main Page Content -->
+  
+    <!-- Javascript Section -->
+	 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js">
+ </script>
+	 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"> 
+ </script>
+  </body>
+</html>

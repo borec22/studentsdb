@@ -4,6 +4,29 @@
 
 {% block meta_title %}Студенти{% endblock meta_title %}
 
+{% block logo %} 
+
+	     <!-- Logo -->
+		 <div class="col-xs-8">
+		   <h1> Сервіс Обліку Студентів </h1>
+		  </div>
+		  
+{% endblock logo %}
+
+{% block group_selector %}
+		  <!-- Groups Selector -->
+		  <div class="col-xs-4" id="group-selector">
+		    <strong>Група:</strong>
+		    <select class="custom-select">
+              <option value="">Усі Студенти </option>
+			  <option value="">457 Група, Романчук Сергій (№ 25) </option>
+			  <option value="">457 Група, Романчук Максим (№ 24) </option>
+			  <option value="">457 Група, Гнітецький Ярослав (№ 02) </option>
+			  
+			</select>
+		  </div>
+{% endblock group_selector %}
+
 {% block title %}База Студентів{% endblock title %}
 
 {% block content %}
@@ -46,7 +69,7 @@
    
 						  <ul class = "dropdown-menu" role = "menu">
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "/journal/{{ student.id }}">Відвідування</a>
+							  <a role="menuitem" tabindex="-1" href = "/journal">Відвідування</a>
 							</li>
 							<li role="presentation">
 							  <a role="menuitem" tabindex="-1" href = "{% url "students_edit" student.id %}">Редагувати</a>
@@ -65,16 +88,20 @@
 				  </tbody>
 			  </table>
 			   <!-- Start Studenrs Listing -->
-			  <nav>
-			    <ul class = "pagination">
-				  <li><a href = "#">&laquo;</a></li>
-				  <li class = "active"><a href = "#">1</a></li>
-				  <li><a href = "#">2</a></li>
-				  <li><a href = "#">3</a></li>
-				  <li><a href = "#">4</a></li>
-				  <li><a href = "#">5</a></li>
-				  <li><a href = "#">&raquo;</a></li>
-				</ul>
-			  </nav>
+			  
+			  {% include 'pagination.html' %}
+			  
 		  
-              {% endblock content %}
+{% endblock content %}
+
+{% block footer %}
+
+		<!-- Start Footer -->
+		<div class="row" id="footer">
+		  <div class="col-xs-12">
+		   &copy; 2020 Сервіс Обліку Студентів
+		  </div>
+		</div>
+		<!-- End Footer -->
+		
+{% endblock footer %}
