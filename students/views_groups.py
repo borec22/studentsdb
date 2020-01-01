@@ -10,13 +10,14 @@ def groups_list(request):
     groups = (
     {'id': 1,
     "name": 457,
-    "starosta": u'Романчук Сергій',
+    "starosta": { 'id': 1, 'name': u'Романчук Сергій' },
     },
     {'id': 2,
     "name": 337,
-    "starosta": u'Романчук Роман',
+    "starosta": { 'id': 2, 'name': u'Романчук Роман' },
     }
     )
+    
     return render (request,'students/list_group.html', {'groups': groups})
     
     

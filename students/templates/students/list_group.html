@@ -17,11 +17,12 @@
 		  <!-- Groups Selector -->
 		  <div class="col-xs-4" id="group-selector">
 		    <strong>Група:</strong>
+		    
 		    <select class="custom-select">
-              <option value="">Усі Студенти </option>
-			  <option value="">457 Група, Романчук Сергій (№ 100) </option>
-			  <option value="">457 Група, Романчук Максим (№ 24) </option>
-			  <option value="">457 Група, Гнітецький Ярослав (№ 02) </option>
+		    
+		    
+              <option value="" >Усі Студенти </option>
+			  <option value="" > Група, (№ 100) </option>
 			  
 			</select>
 		  </div>
@@ -60,7 +61,7 @@
 			   <tr>
 			     <td><a href="#"> {{ forloop.counter }} </td>
 			     <td><a href="{% url "groups_edit" group.id %}"> {{ group.name }} </td>
-			     <td><a href="{% url "groups_edit" group.id %}"> {{ group.starosta }} </td>
+			     <td><a href="{% url "groups_edit" group.starosta.id %}"> {{ group.starosta.name }} </td>
 			     <td>
 				   <div class = "btn-group">
    

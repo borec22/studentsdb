@@ -18,10 +18,10 @@
 		  <div class="col-xs-4" id="group-selector">
 		    <strong>Група:</strong>
 		    <select class="custom-select">
-              <option value="">Усі Студенти </option>
-			  <option value="">457 Група, Романчук Сергій (№ 25) </option>
-			  <option value="">457 Група, Романчук Максим (№ 24) </option>
-			  <option value="">457 Група, Гнітецький Ярослав (№ 02) </option>
+              <option value="" >Усі Студенти </option>
+			  <option value="" >457 Група, Романчук Сергій (№ 100) </option>
+			  <option value="" >453 Група, Романчук Максим (№ 24) </option>
+			  <option value="" >455 Група, Гнітецький Ярослав (№ 02) </option>
 			  
 			</select>
 		  </div>
@@ -57,7 +57,7 @@
 					  <td> <a title="Редагувати"  href="{% url "students_edit" student.id %}"> 
 					       {{ student.last_name }} </td>
 					  <td> <a title="Редагувати"  href="{% url "students_edit" student.id  %}">
-					       {{ student.first_name }} </td>
+					       {{ student.first_name  }} </td>
 					  <td> {{ student.ticket }} </td>
 					  <td> 
 					    <div class = "btn-group">
