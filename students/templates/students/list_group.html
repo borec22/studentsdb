@@ -1,8 +1,6 @@
 {% extends 'students/base.html' %}
 
-{% load static from staticfiles %}
-
-{% block meta_title %}Групи{% endblock meta_title %}
+{% block meta_title %}Список Груп{% endblock meta_title %}
 
 {% block logo %} 
 
@@ -46,22 +44,27 @@
 	     <div class="col-xs-12" id="content-column">
 		    						
 		   <!-- Start Studenrs Listing -->
+		   {% if groups %}
 		   <table class="table table-hover table-striped">
 		     <thead>
 			 <tr>
-			   <th> <a href="#"> # </a></th>
-			   <th> <a href="#">Назва </a></th>
-			   <th> <a href="#">Староста </a></th>
-			   <th> <a href="#">Дії: </a></th>
+			   <th> # </th>
+			   <th> <a href="{% url 'groups' %}?order_by=title{% if request.GET.order_by == 'title' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+			   Назва
+			   {% if request.GET.order_by == 'title' and request.GET.reverse != '1' %} &uarr;
+			   {% elif request.GET.order_by == 'title' and request.GET.reverse == '1' %} &darr;
+			   {% endif %}</a></th>
+			   <th> Староста</th>
+			   <th> Дії</th>
 			 </tr>
 			 </thead>
 		     <tbody>
 		       
 		       {% for group in groups %}
 			   <tr>
-			     <td><a href="#"> {{ forloop.counter }} </td>
-			     <td><a href="{% url "groups_edit" group.id %}"> {{ group.name }} </td>
-			     <td><a href="{% url "groups_edit" group.starosta.id %}"> {{ group.starosta.name }} </td>
+			     <td>{{ forloop.counter0 | add:groups.start_index }} </td>
+			     <td><a href="{% url 'groups_edit' group.id %}"> {{ group.title }} </td>
+			     <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}"> {{ group.leader.first_name }} {{ group.leader.last_name }}</a>{% else %}Немає {% endif %}</td>
 			     <td>
 				   <div class = "btn-group">
    
@@ -72,10 +75,10 @@
    
 						  <ul class = "dropdown-menu" role = "menu">
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "{% url "groups_edit" group.id %}">Редагувати</a>
+							  <a role="menuitem" tabindex="-1" href = "{% url 'groups_edit' group.id %}">Редагувати</a>
 							</li >
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "{% url "groups_delete" group.id %}"> Видалити</a>
+							  <a role="menuitem" tabindex="-1" href = "{% url 'groups_delete' group.id %}"> Видалити</a>
 							</li>
       
 						  </ul>
@@ -86,11 +89,30 @@
 	           
 			 </tbody>
 		   </table>
+		   {% else %}
+		   <p> Поки немає груп у базі даних. </p>
+		   {% endif %}
 		   <!-- Start Studenrs Listing -->
-		   
-		   {% include 'pagination.html' %}
-		   
 {% endblock content %}
+
+{% block pagination%}
+	{% if groups.has_other_pages %}
+	{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+	<nav>
+	    <ul class = "pagination">
+		    <li><a href = "{% url 'groups' %}?page=1&amp;order_by={{order_by}}&amp;reverse={{reverse}}">&laquo;</a></li>
+		    {% for p in groups.paginator.page_range %}
+			<li {% if groups.number == p %} class = "active"{% endif %}> 
+				<a href = "{% url 'groups' %}?page={{p}}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">{{p}}</a></li>
+			{% endfor %}
+			<li><a href = "{% url 'groups'%}?page={{ groups.paginator.num_pages }}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">
+			&raquo;</a>
+			</li>
+		</ul>
+	</nav>
+	{% endwith %}
+	{% endif %}
+{% endblock pagination%}
 
 {% block footer %}
 

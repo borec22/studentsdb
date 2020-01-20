@@ -19,11 +19,14 @@ from students import views_groups
 from students import views_journal
 from django.contrib import admin
 from django.conf.urls import url, include
+from .settings import MEDIA_ROOT, DEBUG
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     # Students urls
-    url(r'^$', views_students.students_list, name='home'),
+    url(r'^$',views_students.students_list, name='home'),
     url(r'^students/add/$', views_students.students_add, name='students_add'),
     url(r'^students/(?P<sid>\d+)/edit/$', views_students.students_edit, name='students_edit'),
     url(r'^students/(?P<sid>\d+)/delete/$', views_students.students_delete, name='students_delete'),
@@ -39,5 +42,6 @@ urlpatterns = [
     url(r'^journal/$', views_journal.journal_list, name='journal'),
     
     url(r'^admin/', admin.site.urls),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-]
+
