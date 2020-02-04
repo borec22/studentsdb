@@ -61,7 +61,7 @@
 		     <tbody>
 		       
 		       {% for group in groups %}
-			   <tr>
+			   <tr>{{group.leader.ticket}}
 			     <td>{{ forloop.counter0 | add:groups.start_index }} </td>
 			     <td><a href="{% url 'groups_edit' group.id %}"> {{ group.title }} </td>
 			     <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}"> {{ group.leader.first_name }} {{ group.leader.last_name }}</a>{% else %}Немає {% endif %}</td>
@@ -82,7 +82,7 @@
 							</li>
       
 						  </ul>
-						</div>
+					</div>
 				 </td>
 			   </tr> 
 	           {% endfor %}

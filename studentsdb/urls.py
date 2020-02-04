@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from students import views_students 
-from students import views_groups 
-from students import views_journal
+from students.views.views_students import * 
+from students.views.views_groups import *
+from students.views.views_journal import *
+from students.views.views_exam import *
+
 from django.contrib import admin
 from django.conf.urls import url, include
 from .settings import MEDIA_ROOT, DEBUG
@@ -26,20 +28,26 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # Students urls
-    url(r'^$',views_students.students_list, name='home'),
-    url(r'^students/add/$', views_students.students_add, name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$', views_students.students_edit, name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$', views_students.students_delete, name='students_delete'),
+    url(r'^$', students_list, name='home'),
+    url(r'^students/add/$', students_add, name='students_add'),
+    url(r'^students/(?P<sid>\d+)/edit/$', students_edit, name='students_edit'),
+    url(r'^students/(?P<sid>\d+)/delete/$', students_delete, name='students_delete'),
      
     #Groups urls
-    url(r'^groups/$', views_groups.groups_list, name='groups'),
-    url(r'^groups/add/$', views_groups.groups_add, name='groups_add'),  
-    url(r'^groups/(?P<gid>\d+)/edit/$', views_groups.groups_edit, name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$', views_groups.groups_delete, name='groups_delete'),
+    url(r'^groups/$', groups_list, name='groups'),
+    url(r'^groups/add/$', groups_add, name='groups_add'),  
+    url(r'^groups/(?P<gid>\d+)/edit/$', groups_edit, name='groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/delete/$', groups_delete, name='groups_delete'),
     
 
     #Journal urls
-    url(r'^journal/$', views_journal.journal_list, name='journal'),
+    url(r'^journal/$', journal_list, name='journal'),
+
+    #Exam urls
+    url(r'^exam/$', exam_list, name='exam'),
+    url(r'^exam/(?P<eid>\d+)/edit_exam/$', exam_edit, name='exam_edit'),
+    url(r'^exam/(?P<tid>\d+)/edit_teacher/$', teacher_edit, name='teacher_edit'),
+    url(r'^exam/add/$', add_exam, name='add_exam'),
     
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

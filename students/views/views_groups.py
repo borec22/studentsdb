@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from students.models import Group 
+from students.models.groups_model import Group 
 
 #Views for groups    
 def groups_list(request):
