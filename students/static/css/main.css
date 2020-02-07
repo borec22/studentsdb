@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
   
   /* Group Selector */
   #group-selector  {
-	  margin-top: 20px;
+	  margin-top: 25px;
   }
   
   #group-selector select {
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 	  color:  #555555;
   }
   
-/* Редагування кнопки додвти  */
+/* Редагування кнопки додати  */
 #group-add {
 	margin-left: 0px;
 	margin-top: 20px;
@@ -72,5 +72,20 @@ h1, h2, h3, h4, h5, h6 {
 	  margin-top: 10px;
 	  background-color: #ECEAE8;
   }
+
+/* Form Styles */
+textarea,
+select,
+input {
+  max-width: 300px;
+}
+
+#notes {
+  cols: 40;
+}
+
+#button-add_student {
+  margin-bottom: 10px;
+}
   
   
