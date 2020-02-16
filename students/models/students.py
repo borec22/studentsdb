@@ -48,18 +48,18 @@ class Student(models.Model):
         verbose_name=u"Білет"
     )
 
-    notes = models.TextField(
-        max_length=256,
-        blank=True,
-        verbose_name=u"Додаткові нотатки"
-    )
-
     student_group = models.ForeignKey('Group', 
         verbose_name=u"Група",
         blank=False,
         null=True,
         on_delete=models.PROTECT
         )
+
+    notes = models.TextField(
+        max_length=200,
+        blank=True,
+        verbose_name=u"Додаткові нотатки"
+    )
 
     def __unicode__(self):
         return u"%s %s" % (self.first_name, self.last_name)

@@ -29,3 +29,7 @@ select,
 input {
   max-width: 300px;
 }
+
+#button_id_edit_student {
+  margin-left: 10px;
+}

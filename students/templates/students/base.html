@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 <!doctype html>
 <html lang="uk">
@@ -43,7 +44,8 @@
                  <li role="presentation" {% if request.path == '/' %} class="active"{% endif %}><a href="{% url 'home' %}">Студенти</a></li>
                  <li role="presentation" {% if '/journal' in request.path %} class="active"{%endif%}><a href="{% url 'journal' %}">Відвідування</a></li>
                  <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}> <a href="{% url 'groups' %}">Групи</a></li>
-                 <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">Іспити</a> </li> 
+                 <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">Іспити</a> </li>
+                 <li role="presentation" {% if '/contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'contact_admin' %}"> Контакт </a> </li>
             </ul>
 		  </div>
 		</div>
@@ -56,13 +58,10 @@
 		    
 		    {% block status_message %}
 			<!-- Status Message -->
-			{% if messages %}
-			{% for message in messages %}
-			
-			  <div class='alert alert-warning' {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+			{% if request.GET.status_message %}
+			  <div class='alert alert-warning' role="alert">{{ request.GET.status_message }}
 			  </div>
-			  
-			{% endfor %}
+  
 			{% endif %}
 			{% endblock %}
 
@@ -90,7 +89,7 @@
 	
 	
      <!-- Javascript Section -->
-	 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js">
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
  </script>
 	 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"> 
  </script>

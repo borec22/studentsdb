@@ -18,6 +18,7 @@ from students.views.views_students import *
 from students.views.views_groups import *
 from students.views.views_journal import *
 from students.views.views_exam import *
+from students.views.contact_admin import *
 
 from django.contrib import admin
 from django.conf.urls import url, include
@@ -30,8 +31,8 @@ urlpatterns = [
     # Students urls
     url(r'^$', students_list, name='home'),
     url(r'^students/add/$', students_add, name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$', students_edit, name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$', students_delete, name='students_delete'),
+    url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
      
     #Groups urls
     url(r'^groups/$', groups_list, name='groups'),
@@ -48,6 +49,11 @@ urlpatterns = [
     url(r'^exam/(?P<eid>\d+)/edit_exam/$', exam_edit, name='exam_edit'),
     url(r'^exam/(?P<tid>\d+)/edit_teacher/$', teacher_edit, name='teacher_edit'),
     url(r'^exam/add/$', add_exam, name='add_exam'),
+
+    # Contact Admin Form
+    url(r'^contact-admin/$', contact_admin, name='contact_admin'),
+    # Contact admin by help django application django-contact-form
+    url(r'^contact/', include('contact_form.urls')),
     
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

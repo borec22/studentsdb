@@ -1,0 +1,54 @@
+{% extends 'students/base.html' %}
+
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% block meta_title %} Редагувати Студента {% endblock meta_title %}
+
+{% block title %} Редагувати Студента {% endblock title %}
+
+{% block logo %} 
+
+	     <!-- Logo -->
+		 <div class="col-xs-8">
+		   <h1> Сервіс Обліку Студентів </h1>
+		 </div>
+		  
+{% endblock logo %}
+
+{% block group_selector %}
+		  <!-- Groups Selector -->
+		  <div class="col-xs-4" id="group-selector">
+		    <strong>Група:</strong>
+		    <select class="custom-select">
+              <option value="" >Усі Студенти </option>
+			  <option value="" >457 Група, Романчук Сергій (№ 100) </option>
+			  <option value="" >453 Група, Романчук Максим (№ 24) </option>
+			  <option value="" >455 Група, Гнітецький Ярослав (№ 02) </option>
+			  
+			</select>
+		  </div>
+{% endblock group_selector %}
+
+{% block status_message %}
+    {{ form.errors }}
+    {% if form.errors %}
+    
+    <div class='alert alert-danger' role="alert">
+      Будь-ласка, виправте наступні помилки
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}	
+    
+{% crispy form form.helper %}
+
+{% endblock content %}
+<input type="submit" value="Зберегти" name="add_button"
+             class="btn btn-primary" /> 
+<! -- <span id="button_id_edit_student"> <a href="{% url 'home' %}?status_message=Редагування студента скасовано">Cancel</a> </span> -->

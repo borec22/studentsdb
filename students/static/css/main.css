@@ -80,12 +80,16 @@ input {
   max-width: 300px;
 }
 
-#notes {
-  cols: 40;
-}
-
 #button-add_student {
   margin-bottom: 10px;
 }
+#button_id_edit_student {
+  margin-left: 20px;
+}
+
+#submit-id-second_button {
+  margin-left: 90px;
+}
+
   
   

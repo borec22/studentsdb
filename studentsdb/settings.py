@@ -26,7 +26,15 @@ SECRET_KEY = 'o&p$irf4uc6q_sspz(wmtsz431^$bze_e+!ghwqbhta@5ny1^d'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# email settings
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+ADMIN_EMAIL = 'romanchuk.sss22121999@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'romanchuk.sss22121999@gmail.com'
+EMAIL_HOST_PASSWORD = 'aezakmi22hesoyam22'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Application definition
 
@@ -37,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', 
+    'crispy_forms',
+    'contact_form',
     'students',
+
 ]
 
 MIDDLEWARE = [
@@ -69,6 +80,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 # Database
@@ -120,3 +132,5 @@ PORTAL_URL = 'http://localhost:8000'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..','media')
+
+
