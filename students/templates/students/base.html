@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
+{% block body_block %} {% endblock body_block %}
 
 <!doctype html>
 <html lang="uk">
@@ -46,6 +47,7 @@
                  <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}> <a href="{% url 'groups' %}">Групи</a></li>
                  <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">Іспити</a> </li>
                  <li role="presentation" {% if '/contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'contact_admin' %}"> Контакт </a> </li>
+                 <!-- <li role="presentation" {% if '/django-contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'django-contact-admin' %}"> Контакт DCA </a> </li> -->
             </ul>
 		  </div>
 		</div>

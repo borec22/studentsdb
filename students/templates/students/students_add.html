@@ -121,7 +121,7 @@
         <select name="student_group" id="student_group" class="form-control">
   	      <option value="">Виберіть групу</option>
   	      {% for group in groups %}
-  	      <option value="{{ group.id }}" {% if group.id == request.POST.student_group|add:0 %}selected="1"{% endif %}>{{ group.title }}</option>
+  	      <option value="{{ group.id }}" {% if group.id == request.POST.student_group|add:0 %}selected='1'{% endif %}> {{ group.title }}</option>
   	      {% endfor %}
         </select>
         <span class="help_block" style="color: #801a00">{{ errors.student_group }}</span>
@@ -138,7 +138,7 @@
         <span class="help-block">{{ errors.notes }}</span>
   	  </div>
     </div>
-  	<div class="col-sm-offset-2 col-sm-10" id="button-add_student">
+  	<div class="col-sm-offset-2 col-sm-10" id="buttons-form">
       <input type="submit" 
              value="Додати" 
              name="add_button" 
@@ -146,4 +146,5 @@
       <button type="submit" name="cancel_button" class="btn btn-link">Скасувати</button>
   	</div>
   </form>  
+
 {% endblock content %}

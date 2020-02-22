@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
+from django.views.generic.edit import FormView
+
 from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -45,36 +47,56 @@ class ContactForm(forms.Form):
         # form buttons
         self.helper.add_input(Submit('second_button', u'Надіслати'))
 
+#contact_admin by class FormView
+class ContactAdminView(FormView):
+    template_name = 'contact_admin/form.html'
+    form_class = ContactForm
+    #success_url = 'students/students_list'
 
-def contact_admin(request):
+    def get_success_url(self):
+        return u'%s?status_message=Повідомлення успішно відправлено!' % reverse('contact_admin')
+
+    def form_valid(self, form):
+        """This method is called for valid data"""
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        from_email = form.cleaned_data['from_email']
+
+        send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+
+        return super(ContactAdminView, self).form_valid(form)
+
+#contact admin by view
+
+#def contact_admin(request):
     # check if form was posted
-    if request.method == 'POST':
+    #if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = ContactForm(request.POST)
+        #form = ContactForm(request.POST)
         # check whether user data is valid:
-        if form.is_valid():
+        #if form.is_valid():
             # send email
-            subject = form.cleaned_data['subject'] 
-            message = form.cleaned_data['message']
-            from_email = form.cleaned_data['from_email']
+            #subject = form.cleaned_data['subject'] 
+            #message = form.cleaned_data['message']
+            #from_email = form.cleaned_data['from_email']
 
             
-            try:
-                send_mail(subject, message, [from_email], [ADMIN_EMAIL]) #fail_silentle=False)
+            #try:
+                #send_mail(subject, message, [from_email], [ADMIN_EMAIL]) #fail_silentle=False)
 
-            except BadHeaderError:
-                message = u"Під час відправки листа виникла непередбачувана помилка. "\
-                          u"Спробуйте скористатись даною формою пізніше."
-            else: 
-                message = u"Повідомлення успішно надіслане!"
+            #except BadHeaderError:
+               # message = u"Під час відправки листа виникла непередбачувана помилка. "\
+                         # u"Спробуйте скористатись даною формою пізніше."
+           # else: 
+                #message = u"Повідомлення успішно надіслане!"
 
             # redirect to same contact page with sucsess message
             
-            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'), message))
+            #return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'), message))
         
         
     # if there was not POST render blank form
-    else:
-        form = ContactForm()
+    #else:
+        #form = ContactForm()
     
-    return render(request, 'contact_admin/form.html', {'form': form})
+    #return render(request, 'contact_admin/form.html', {'form': form})

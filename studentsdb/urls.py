@@ -19,9 +19,12 @@ from students.views.views_groups import *
 from students.views.views_journal import *
 from students.views.views_exam import *
 from students.views.contact_admin import *
+from students.views.django_contact_admin import *
 
 from django.contrib import admin
 from django.conf.urls import url, include
+
+from django.views.generic import TemplateView
 from .settings import MEDIA_ROOT, DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
@@ -37,8 +40,8 @@ urlpatterns = [
     #Groups urls
     url(r'^groups/$', groups_list, name='groups'),
     url(r'^groups/add/$', groups_add, name='groups_add'),  
-    url(r'^groups/(?P<gid>\d+)/edit/$', groups_edit, name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$', groups_delete, name='groups_delete'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/delete/$', GroupDeleteView, name='groups_delete'),
     
 
     #Journal urls
@@ -46,14 +49,19 @@ urlpatterns = [
 
     #Exam urls
     url(r'^exam/$', exam_list, name='exam'),
-    url(r'^exam/(?P<eid>\d+)/edit_exam/$', exam_edit, name='exam_edit'),
-    url(r'^exam/(?P<tid>\d+)/edit_teacher/$', teacher_edit, name='teacher_edit'),
-    url(r'^exam/add/$', add_exam, name='add_exam'),
+    url(r'^exam/(?P<pk>\d+)/edit_exam/$', exam_edit.as_view(), name='exam_edit'),
+    url(r'^exam/(?P<pk>\d+)/delete_exam/$', exam_delete.as_view(), name='exam_delete'),
+    url(r'^exam/add/$', add_exam.as_view(), name='add_exam'),
 
     # Contact Admin Form
-    url(r'^contact-admin/$', contact_admin, name='contact_admin'),
+    url(r'^contact-admin/$', ContactAdminView.as_view(), name='contact_admin'),
     # Contact admin by help django application django-contact-form
-    url(r'^contact/', include('contact_form.urls')),
+    url(r'^django-contact-admin/$', CustomContactFormView.as_view(), name='django-contact-admin'),
+    url(r'^contact/sent/$',
+        TemplateView.as_view(
+            template_name='contact_admin/django_contact_form_sent.html'
+        ),
+        name='contact_form_sent'),
     
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

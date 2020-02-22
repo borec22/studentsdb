@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.forms import ModelForm
 from django.views.generic import UpdateView, DeleteView
+from django import forms
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import Field
@@ -136,8 +137,11 @@ def students_add(request):
 #def students_edit(request, sid):
  #   return HttpResponse('<h1> Edit student %s </h1>' % sid)
     
-def students_delete(request, sid):
-    return HttpResponse('<h1> Delete Student %s </h1>' % sid)
+
+#class StudentUpdateForm(ModelForm):
+#    class Meta:
+#        model = Student
+#        fields = ['first_name','last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes' ]
 
 class StudentUpdateForm(ModelForm):
     class Meta:
@@ -150,8 +154,8 @@ class StudentUpdateForm(ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        self.helper.form_action = reverse('students_edit',
-            kwargs={'pk': kwargs['instance'].id})
+        #self.helper.form_action = reverse('students_edit',
+         #   kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -167,7 +171,7 @@ class StudentUpdateForm(ModelForm):
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
+            Submit('save_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         ))
 
@@ -187,7 +191,7 @@ class StudentUpdateView(UpdateView):
                 u'%s?status_message=Редагування студента відмінено!' %
                 reverse('home'))
         else:
-            return super(StudentUpdateView, self).post(request, *args, **kwargs)
+            return super(StudentUpdateView, self).post(request, *args, **kwargs)   
 
 class StudentDeleteView(DeleteView):
     model = Student

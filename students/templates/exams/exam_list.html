@@ -44,6 +44,7 @@
 			   {% elif request.GET.order_by == 'teacher' and request.GET.reverse == '1' %} &darr;
 			   {% endif %}</a></th>
 			   <th> Складають іспит</th>
+			   <th> Дії </th>
 			 </tr>
 			 </thead>
 		     <tbody>
@@ -53,7 +54,7 @@
 			     <td>{{ forloop.counter0 | add:exams.start_index }} </td>
 			     <td><a href="{% url 'exam_edit' exam.id %}"> {{ exam.subject }} </td>
 			     <td> {{ exam.data_and_time}} </td>
-			     <td><a href="{% url 'teacher_edit' exam.id %}"> {{ exam.teacher}} </td>
+			     <td><a href="{% url 'exam_edit' exam.id %}"> {{ exam.teacher}} </td>
 			     <td>
 				   <div class = "btn-group">
    
@@ -71,6 +72,25 @@
 						  </ul>
 						</div>
 				 </td>
+				 <td> 
+					    <div class = "btn-group">
+   
+                          <button type = "button" 
+						               class = "btn btn-default dropdown-toggle" data-toggle = "dropdown"> Дія
+                            <span class = "caret"></span>
+						  </button>
+   
+						  <ul class = "dropdown-menu" role = "menu">
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "{% url 'exam_edit' exam.id %}">Редагувати</a>
+							</li >
+							<li role="presentation">
+							  <a role="menuitem" tabindex="-1" href = "{% url 'exam_delete' exam.id %}"> Видалити</a>
+							</li>
+      
+						  </ul>
+						</div>
+					  </td>
 			   </tr> 
 	           {% endfor %}
 	           

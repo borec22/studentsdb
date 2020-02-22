@@ -45,9 +45,8 @@
 
 
 {% block content %}	
-    
-{% crispy form form.helper %}
 
+  {% crispy form %} 
 {% endblock content %}
 <input type="submit" value="Зберегти" name="add_button"
              class="btn btn-primary" /> 

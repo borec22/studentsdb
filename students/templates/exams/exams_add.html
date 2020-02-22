@@ -1,0 +1,34 @@
+{% extends 'students/base.html' %}
+
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block meta_title %} Додади Екзамен {% endblock meta_title %}
+
+{% block logo %} 
+
+       <!-- Logo -->
+     <div class="col-xs-8">
+       <h1> Сервіс Обліку Студентів </h1>
+     </div>
+      
+{% endblock logo %}
+
+
+{% block title %} Додати Екзамен {% endblock title %}
+
+{% block status_message %}
+
+    {% if errors %}
+    
+    <div class='alert alert-danger' role="alert">
+      Будь-ласка, виправте наступні помилки
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}     
+  {% crispy form %}
+{% endblock content %}

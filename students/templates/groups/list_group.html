@@ -36,7 +36,7 @@
 			</div>
 		    <div class="col-xs-1 " id="group-add">
 		      <!-- Додати групу -->
-		      <a class="btn btn-primary" href="{% url 'students_add' %}" role="button">Додати Групу</a>
+		      <a class="btn btn-primary" href="{% url 'groups_add' %}" role="button">Додати Групу</a>
 		    </div>
 	   </div>
 	   
@@ -61,7 +61,7 @@
 		     <tbody>
 		       
 		       {% for group in groups %}
-			   <tr>{{group.leader.ticket}}
+			   <tr>
 			     <td>{{ forloop.counter0 | add:groups.start_index }} </td>
 			     <td><a href="{% url 'groups_edit' group.id %}"> {{ group.title }} </td>
 			     <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}"> {{ group.leader.first_name }} {{ group.leader.last_name }}</a>{% else %}Немає {% endif %}</td>
