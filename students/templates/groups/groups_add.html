@@ -51,8 +51,7 @@
         <select name="leader" id="leader" class="form-control">
           <option value="">Виберіть старосту</option>
           {% for leader in leaders %}
-
-          <option value="{{ leader.id }}" >{{ leader.last_name }} {{ leader.first_name}} {{leader.id}}</option>
+          <option value="{{ leader.id }}" {% if leader.id == request.POST.leader|add:0 %}selected='1'{% endif %}>{{ leader.last_name }} {{ leader.first_name}}</option>
           {% endfor %}
         </select>
         <span class="help_block" style="color: #801a00">{{errors.leader}}</span>

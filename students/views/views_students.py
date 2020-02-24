@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, DeleteView
 from django import forms
 
@@ -148,6 +148,13 @@ class StudentUpdateForm(ModelForm):
         model = Student
         fields = ['first_name','last_name', 'middle_name', 'birthday',  'photo', 'ticket', 'student_group', 'notes' ]
 
+    def clean_student_group(self):
+        # get group where current student is a leader
+            groups = Group.objects.filter(leader=self.instance)
+            if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
+                raise ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+            return self.cleaned_data['student_group'] 
+
     def __init__(self, *args, **kwargs):
         super(StudentUpdateForm, self).__init__(*args, **kwargs)
 
@@ -191,7 +198,7 @@ class StudentUpdateView(UpdateView):
                 u'%s?status_message=Редагування студента відмінено!' %
                 reverse('home'))
         else:
-            return super(StudentUpdateView, self).post(request, *args, **kwargs)   
+            return super(StudentUpdateView, self).post(request, *args, **kwargs) 
 
 class StudentDeleteView(DeleteView):
     model = Student

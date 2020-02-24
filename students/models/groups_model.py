@@ -19,7 +19,7 @@ class Group(models.Model):
 
     leader = models.OneToOneField('Student',
         max_length=256,
-        blank=True,
+        blank=False,
         null=True,
         verbose_name=u"Староста",
         on_delete=models.SET_NULL

@@ -34,10 +34,42 @@ class StudentAdmin(admin.ModelAdmin):
 	def view_on_site(self, obj):
 		return reverse('students_edit', kwargs={'pk': obj.id})
 
+class GroupFormAdmin(ModelForm):
+    
+    def clean(self):
+    	group = Group.objects.filter(title=self.cleaned_data['title'])
+    	if  len(group) > 1:
+    		raise ValidationError('Така група вже існує.', code='invalid')
+
+
+class GroupAdmin(admin.ModelAdmin):
+	list_display = ['title', 'leader']
+	list_display_links = ['title', 'leader']
+	ordering = ['title']
+	list_filter = ['title']
+	list_per_page = 5
+	search_fields = ['title']
+	
+	form = GroupFormAdmin
+
+	def view_on_site(self, obj):
+		return reverse('groups_edit', kwargs={'gid': obj.id})
+
+class ExamAdmin(admin.ModelAdmin):
+	list_display = ['subject', 'data_and_time', 'teacher']
+	list_display_links = ['subject', 'data_and_time']
+	ordering = ['subject']
+	list_filter = ['subject']
+	lisp_per_page = 5
+	search_fields = ['subject']
+
+	def view_on_site(self, obj):
+		return reverse('exam_edit', kwargs={'pk': obj.id})
+
 # Register your models here.
 admin.site.register(Student, StudentAdmin)
-admin.site.register(Group)
-admin.site.register(Exam)
+admin.site.register(Group, GroupAdmin)
+admin.site.register(Exam, ExamAdmin)
 
 
 

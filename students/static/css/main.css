@@ -96,3 +96,8 @@ input {
   margin-top: 20px;
   
 }
+
+/*  Додав відстань між кнопками зберегти та скасувати groups_edit.html */
+#cancel_button {
+  margin-left: 10px;
+}

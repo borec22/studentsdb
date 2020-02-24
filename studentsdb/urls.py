@@ -40,7 +40,7 @@ urlpatterns = [
     #Groups urls
     url(r'^groups/$', groups_list, name='groups'),
     url(r'^groups/add/$', groups_add, name='groups_add'),  
-    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/edit/$', groups_edit, name='groups_edit'),
     url(r'^groups/(?P<gid>\d+)/delete/$', GroupDeleteView, name='groups_delete'),
     
 
