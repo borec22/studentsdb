@@ -31,15 +31,15 @@
 {% endblock group_selector %}
 
 {% block status_message %}
-    {{ form.errors }}
-    {% if form.errors %}
+   
+    {% if not students %}
     
-    <div class='alert alert-danger' role="alert">
-      Будь-ласка, виправте наступні помилки
+    <div class='alert alert-waring' role="alert">
+      Поки немає жодного студента в базі. Будь-ласка, 
+      <a href="{% url 'students_add' %}"> додайте </a> першого.
     </div>
-
+    
     {% endif %}
-
 {% endblock %}
 
 {% block content %}	
@@ -50,6 +50,15 @@
     </div>
 
   {% else %}
+
+  <div class="alert alert-warning" id="downloading">
+    Зміни в журналі зберігаються автоматично при кожному кліку в клітинці таблиці.
+    <span id="ajax-progress-indicator"> Йде збереження... </span>
+
+  </div>
+  <div class="alert alert-danger" id="error-status">
+  	
+  </div>
 
   <p id="journal-nav" class="text-center"> 
     <a href="?month={{ prev_month }}"
@@ -101,7 +110,8 @@
 
         {% for day in student.days %}
          <td class="day-box">
-         	<input type="checkbox" data-student-id="{{ student.id }}" 
+         	<input type="checkbox" 
+         	       data-student-id="{{ student.id }}" 
          	       data-date="{{ day.date }}" 
          	       data-url="{{ student.update_url }}" 
          	       value="1"

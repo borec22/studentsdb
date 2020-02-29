@@ -109,3 +109,11 @@ th.day-header {
   vertical-align: middle !important;
   text-align: center;
 }
+
+#ajax-progress-indicator {
+  display: none;
+}
+
+#error-status {
+  display: none;
+}

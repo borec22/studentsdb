@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/staticc/'
+STATIC_URL = '/staticcs/'
 
 PORTAL_URL = 'http://localhost:8000'
 
