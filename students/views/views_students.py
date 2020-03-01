@@ -17,10 +17,16 @@ from crispy_forms.bootstrap import FormActions
 
 from students.models.students_model import Student
 from students.models.groups_model import Group
+from ..util import paginate, get_current_group
 
 
 def students_list(request):
-	students = Student.objects.all().order_by('last_name')
+    # check if we need to show only one group of students
+    current_group = get_current_group(request)
+    if current_group:
+	    students = Student.objects.filter(student_group=current_group)
+    else:
+        students = Student.objects.all().order_by('last_name')
 	
 	#try to order student list
 	order_by = request.GET.get('order_by', ' ')
@@ -31,20 +37,9 @@ def students_list(request):
 	#else:
 	#	students = students.order_by('last_name')
 	
-	#paginate students
-	paginator = Paginator(students, 3)
-	page = request.GET.get('page', '')
-	try:
-		students = paginator.page(page)
-	except PageNotAnInteger:
-		#If page is not an integer, deliver first page.
-		students = paginator.page(1)
-	except EmptyPage:
-		# If page is out of range (e.g. 9999), deliver
-		# last page of results
-		students = paginator.page(paginator.num_pages)
-
-	return render(request, 'students/students_list.html', {'students': students})
+	#aply pagination, 3 students per page
+    context = paginate(students, 3, request, {}, var_name="students")
+    return render(request, 'students/students_list.html', context)
 
 def students_add(request):
     # was form posted?

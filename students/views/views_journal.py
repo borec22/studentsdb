@@ -17,7 +17,7 @@ from students.models.students_model import Student
 from ..util import paginate
 
 class JournalView(TemplateView):
-    template_name = 'students/journal.html'
+    template_name = 'journal/journal.html'
 
     def get_context_data(self, **kwargs):
     	# get context data from TemplateView class
