@@ -18,11 +18,16 @@ from crispy_forms.bootstrap import FormActions
 
 from students.models.groups_model import Group
 from students.models.students_model import Student
+from ..util import paginate, get_current_group
 
 #Views for groups    
 def groups_list(request):
-    groups = Group.objects.all()
-
+    # check if we need show only one group
+    current_group = get_current_group(request)
+    if current_group:
+        groups = [current_group]
+    else: 
+        groups = Group.objects.all()
     #try to order groups list
     order_by = request.GET.get('order_by', '')
     if order_by in ('title',):
@@ -31,18 +36,8 @@ def groups_list(request):
             groups = groups.reverse()
 
     #paginate groups
-    paginator = Paginator(groups, 2)
-    page = request.GET.get('page', '')
-    try:
-        groups = paginator.page(page)
-    except PageNotAnInteger:
-        #If page is not an integer, deliver first page.
-        groups = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver
-        # last page of results
-        groups = paginator.page(paginator.num_pages)
-    return render (request,'groups/list_group.html', {'groups': groups})
+    context = paginate(groups, 2, request, {}, var_name="groups")
+    return render (request,'groups/list_group.html', context)
 
     
 def groups_add(request):

@@ -13,8 +13,11 @@ from django.http import JsonResponse
 
 from students.models.monthjournal import MonthJournal
 from students.models.students_model import Student
+from django.utils.decorators import method_decorator
+#from urllib import request
+#import requests
 
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 class JournalView(TemplateView):
     template_name = 'journal/journal.html'
@@ -54,8 +57,11 @@ class JournalView(TemplateView):
 
         # get all students from database, or just one if we need to
         # display journal for one student
+        current_group = get_current_group(self.request)
         if kwargs.get('pk'):
             queryset = [Student.objects.get(pk=kwargs['pk'])]
+        elif current_group:
+            queryset = Student.objects.filter(student_group=current_group)
         else:
             queryset = Student.objects.order_by('last_name')
         # url to update student presense, for form post

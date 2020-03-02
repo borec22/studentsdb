@@ -1,3 +1,30 @@
+function initDateFields() {
+	// for all form created by help django_crispy_form
+	$("input.dateinput").datetimepicker({
+		'format': 'YYYY-MM-DD'
+	}).on('dp.hide', function(event){
+		$(this).blur();
+	});
+
+    //for form exam field data and time
+    $("input.datetimeinput").datetimepicker({
+		'format': 'DD/MM/YYYY HH:MM:SS'
+	}).on('dp.hide', function(event){
+		$(this).blur();
+	});
+    
+    //for form students_add
+	$("#birthday").datetimepicker({
+		'format': 'YYYY-MM-DD'
+	}).on('dp.hide', function(event){
+		$(this).blur();
+	});
+
+	//$("#birthday").val($("#birthday").val() + html(<i class="fa fa-calendar" style="font-size:24px"></i>);
+
+}
+
+
 function initGroupSelector() {
     // look up select element with groups and atach our even handler 
     // on field "change" event
@@ -57,6 +84,16 @@ function initJournal() {
 $(document).ready(function(){
   initJournal();
   initGroupSelector();
+  initDateFields();
+
+  $('.input-group-addon').click(function() {
+    initDateFields();
+  });
 });
+
+//$(".input-group-addon").click( function() {
+//  alert('hi');
+//	//initDateFields();
+//});
 
 

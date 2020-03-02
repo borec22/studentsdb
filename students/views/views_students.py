@@ -12,7 +12,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import Field
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Button, Fieldset
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 
 
 from students.models.students_model import Student
@@ -167,9 +167,10 @@ class StudentUpdateForm(ModelForm):
         self.helper.html5_required = False
         self.helper.form_show_labels = True
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-10'
+        self.helper.field_class = 'col-sm-3'
         self.helper.attrs = {'novalidate': ''}
-
+        #self.helper.layout.append(AppendedText('birthday', '$', active=True))
+        self.helper.layout[3] = AppendedText('birthday', '<label for="id_birthday" style="height: 10px"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></label>', active=True)
         
         #add buttons
         self.helper.layout.fields.append(FormActions(

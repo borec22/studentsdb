@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import Field
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Button, Fieldset
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 
 from django import forms
 from django.views.generic import UpdateView, DeleteView, CreateView
@@ -17,11 +17,16 @@ from django.forms import ModelForm
 from students.models.exams_model import Exam
 from students.models.groups_model import Group
 from students.models.students_model import Student
+from ..util import paginate, get_current_group 
 
 #Views for groups  
 
 def exam_list(request):
-    exams = Exam.objects.all()
+    current_group = get_current_group(request)
+    if current_group:
+        exams = Exam.objects.filter(examenation = current_group)
+    else:
+        exams = Exam.objects.all()
     #try to order exams list
     order_by = request.GET.get('order_by', '')
     if order_by in ('subject','teacher',):
@@ -30,18 +35,8 @@ def exam_list(request):
             exams = exams.reverse()
 
     #paginate exams
-    paginator = Paginator(exams, 2)
-    page = request.GET.get('page', '')
-    try:
-        exams = paginator.page(page)
-    except PageNotAnInteger:
-        #If page is not an integer, deliver first page.
-        exams = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver
-        # last page of results
-        exams = paginator.page(paginator.num_pages)
-    return render (request, 'exams/exam_list.html', {'exams': exams})
+    context = paginate(exams, 3, request, {}, var_name="exams")
+    return render (request, 'exams/exam_list.html', context)
 
 
 class EditExamForm(forms.ModelForm):
@@ -89,8 +84,11 @@ class EditExamForm(forms.ModelForm):
         self.helper.html5_required = False
         self.helper.form_show_labels = True
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-10'
+        self.helper.field_class = 'col-sm-3'
         self.helper.attrs = {'novalidate': ''}
+        self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
+            style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
+            aria-hidden="true"> </span> </label>', active=True)
 
         
         #add buttons
@@ -179,8 +177,11 @@ class AddExamForm(forms.ModelForm):
         self.helper.html5_required = False
         self.helper.form_show_labels = True
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-10'
+        self.helper.field_class = 'col-sm-3'
         self.helper.attrs = {'novalidate': ''}
+        self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
+            style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
+            aria-hidden="true"> </span> </label>', active=True)
 
         
         #add buttons
