@@ -10,6 +10,19 @@
 		  </div>
 {% endblock logo %}
 
+{% block group_selector %}
+    <!-- Groups Selector -->
+  <div class="col-xs-4" id="group-selector">
+        <strong>Група:</strong>
+        <select class="custom-select">
+              <option value="" >Усі Групи </option>
+              {% for group in GROUPS %}
+        <option value="{{ group.id }}"{% if group.selected %} selected="1"{% endif %}> {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+        {% endfor %}
+        
+      </select>
+      </div>    
+{% endblock group_selector %}
 
 {% block content %}
 
@@ -19,8 +32,8 @@
 		      <h2> Іспити </h2>
 			</div>
 		    <div class="col-xs-1 " id="group-add">
-		      <!-- Додати групу -->
-		      <a class="btn btn-primary" href="{% url 'add_exam' %}" role="button">Додати Іспит</a>
+		      <!-- Додати групу -->  
+		      <a class="btn btn-primary modal-form-link" href="{% url 'add_exam' %}" role="button">Додати Іспит</a>
 		    </div>
 	   </div>
 	   
@@ -52,9 +65,9 @@
 		       {% for exam in exams %}
 			   <tr>
 			     <td>{{ forloop.counter0 | add:exams.start_index }} </td>
-			     <td><a href="{% url 'exam_edit' exam.id %}"> {{ exam.subject }} </td>
+			     <td><a class="modal-form-link" href="{% url 'exam_edit' exam.id %}"> {{ exam.subject }} </td>
 			     <td> {{ exam.data_and_time}} </td>
-			     <td><a href="{% url 'exam_edit' exam.id %}"> {{ exam.teacher}} </td>
+			     <td><a class="modal-form-link" href="{% url 'exam_edit' exam.id %}"> {{ exam.teacher}} </td>
 			     <td>
 				   <div class = "btn-group">
    
@@ -82,7 +95,7 @@
    
 						  <ul class = "dropdown-menu" role = "menu">
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "{% url 'exam_edit' exam.id %}">Редагувати</a>
+							  <a role="menuitem" tabindex="-1" href = "{% url 'exam_edit' exam.id %}" class="modal-form-link">Редагувати</a>
 							</li >
 							<li role="presentation">
 							  <a role="menuitem" tabindex="-1" href = "{% url 'exam_delete' exam.id %}"> Видалити</a>

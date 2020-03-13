@@ -156,8 +156,9 @@ class StudentUpdateForm(ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        #self.helper.form_action = reverse('students_edit',
-         #   kwargs={'pk': kwargs['instance'].id})
+        #import pdb; pdb.set_trace();
+        self.helper.form_action = reverse('students_edit',
+            kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -166,15 +167,15 @@ class StudentUpdateForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = False
         self.helper.form_show_labels = True
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-3'
+        self.helper.label_class = 'col-sm-4'
+        self.helper.field_class = 'col-sm-7'
         self.helper.attrs = {'novalidate': ''}
         #self.helper.layout.append(AppendedText('birthday', '$', active=True))
         self.helper.layout[3] = AppendedText('birthday', '<label for="id_birthday" style="height: 10px"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></label>', active=True)
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('save_button', u'Зберегти', css_class="btn btn-primary"),
+            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         ))
 
@@ -183,7 +184,7 @@ class StudentUpdateView(UpdateView):
     template_name = 'students/students_edit.html'
     #fields = '__all__'
     form_class = StudentUpdateForm
-
+    
     def get_success_url(self):
         return u'%s?status_message=Студента успішно збережено!' \
             % reverse('home')

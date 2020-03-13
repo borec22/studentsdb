@@ -73,11 +73,23 @@ h1, h2, h3, h4, h5, h6 {
 	  background-color: #ECEAE8;
   }
 
+/* Indicator on students page downloading */
+#loading-before-modal-students-edit {
+  display: none; 
+}
+
+/* Indicator on students modal form downloading */
+
+#ajax-progress-indicator-modal-window {
+  display: none;
+  margin-left: 200px;
+}
+
 /* Form Styles */
 textarea,
 select,
 input {
-  max-width: 300px;
+  max-width: 320px;
 }
 
 #buttons-form {

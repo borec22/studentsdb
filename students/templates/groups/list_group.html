@@ -10,7 +10,19 @@
 		  </div>
 {% endblock logo %}
 
-{% block group_selector %} {% endblock group_selector %}
+{% block group_selector %}
+    <!-- Groups Selector -->
+  <div class="col-xs-4" id="group-selector">
+        <strong>Група:</strong>
+        <select class="custom-select">
+              <option value="" >Усі Групи </option>
+              {% for group in GROUPS %}
+        <option value="{{ group.id }}"{% if group.selected %} selected="1"{% endif %}> {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+        {% endfor %}
+        
+      </select>
+      </div>    
+{% endblock group_selector %}
 
 {% block content %}
 
@@ -21,7 +33,7 @@
 			</div>
 		    <div class="col-xs-1 " id="group-add">
 		      <!-- Додати групу -->
-		      <a class="btn btn-primary" href="{% url 'groups_add' %}" role="button">Додати Групу</a>
+		      <a class="btn btn-primary modal-form-link" href="{% url 'groups_add' %}" role="button">Додати Групу</a>
 		    </div>
 	   </div>
 	   
@@ -46,10 +58,10 @@
 		     <tbody>
 		       
 		       {% for group in groups %}
-			   <tr>
+			   <tr> 
 			     <td>{{ forloop.counter0 | add:groups.start_index }} </td>
-			     <td><a href="{% url 'groups_edit' group.id %}"> {{ group.title }} </td>
-			     <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}"> {{ group.leader.first_name }} {{ group.leader.last_name }}</a>{% else %}Немає {% endif %}</td>
+			     <td><a href="{% url 'groups_edit' group.id %}" class="modal-form-link"> {{ group.title }} </td>
+			     <td>{% if group.leader %}<a href="{% url 'students_edit' group.leader.id %}" class="modal-form-link"> {{ group.leader.first_name }} {{ group.leader.last_name }}</a>{% else %}Немає {% endif %}</td>
 			     <td>
 				   <div class = "btn-group">
    
@@ -60,7 +72,7 @@
    
 						  <ul class = "dropdown-menu" role = "menu">
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "{% url 'groups_edit' group.id %}">Редагувати</a>
+							  <a role="menuitem" tabindex="-1" href = "{% url 'groups_edit' group.id %}" class="modal-form-link">Редагувати</a>
 							</li >
 							<li role="presentation">
 							  <a role="menuitem" tabindex="-1" href = "{% url 'groups_delete' group.id %}"> Видалити</a>

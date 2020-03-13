@@ -38,17 +38,7 @@
 	      {% block logo %} {% endblock logo %}
 		  
 		  {% block group_selector %} {% endblock group_selector %}
-		  <!-- Groups Selector -->
-		  <div class="col-xs-4" id="group-selector">
-		    <strong>Група:</strong>
-		    <select class="custom-select">
-              <option value="" >Усі Групи </option>
-              {% for group in GROUPS %}
-			  <option value="{{ group.id }}"{% if group.selected %} selected="1"{% endif %}> {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-			  {% endfor %}
-			  
-			</select>
-		  </div>
+		  
 		</div>
 		<!-- End Header -->
 		
@@ -82,7 +72,11 @@
 			{% endblock %}
 
 			<h2> {% block title %} {% endblock title %} </h2>
-			{% block content %}{% endblock content %}
+			{% block content %}
+            
+			{% endblock content %}
+
+			  
 			{% block pagination%}{% endblock pagination%}
 			  
 		  </div>
@@ -103,10 +97,26 @@
 	</div>
 	<!-- End Container -->
 	
-	
+	<!-- Modal Boilerplate -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
+        </div>
+        <div class="modal-body"><!-- --></div>
+        <div class="modal-footer"><!-- --></div>
+      </div>
+    </div>
+  </div>
      <!-- Javascript Section -->
 	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
  </script>
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
      <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script> -->
      <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
      <script> moment.locale('uk') </script>

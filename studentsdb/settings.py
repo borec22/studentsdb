@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # email settings
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-ADMIN_EMAIL = 'romanchuk.sss22121999@gmail.com'
+ADMIN_EMAIL = 'romanchuk'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'romanchuk.sss22121999@gmail.com'
@@ -127,11 +127,59 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/staticcs/'
+STATIC_URL = '/staticpp/'
 
 PORTAL_URL = 'http://localhost:8000'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..','media')
+
+LOG_FILE = os.path.join(BASE_DIR, 'students.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose'
+        },
+
+    },
+    'loggers': {
+        'django': {
+           'handlers': ['null'],
+           'propagate': True,
+           'level': 'INFO',
+        },
+        'students.signals': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'students.views.contact_admin': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        }
+    }
+}
 
 

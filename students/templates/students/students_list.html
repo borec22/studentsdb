@@ -14,7 +14,17 @@
 {% endblock logo %}
 
 {% block group_selector %}
-		  
+    <!-- Groups Selector -->
+	<div class="col-xs-4" id="group-selector">
+		    <strong>Група:</strong>
+		    <select class="custom-select">
+              <option value="" >Усі Групи </option>
+              {% for group in GROUPS %}
+			  <option value="{{ group.id }}"{% if group.selected %} selected="1"{% endif %}> {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+			  {% endfor %}
+			  
+			</select>
+		  </div>	  
 {% endblock group_selector %}
 
 {% block title %}База Студентів{% endblock title %}
@@ -24,7 +34,11 @@
 <!doctype html>
 
 			  <!-- Додати Студента -->
-			  <a class="btn btn-primary" href = "{% url 'students_add' %}" role="button"> Додати Студента</a>
+			  
+			  <a class="btn btn-primary modal-form-link" href = "{% url 'students_add' %}" role="button"> Додати Студента</a>
+              
+			  <!-- Indicator downloading edit student-->            
+		      <span id="loading-before-modal-students-edit">Завантаження....</span>
 			  
 			  <!-- Start Studenrs Listing -->
 			  <table class="table table-hover table-striped" >
@@ -69,9 +83,9 @@
 					  
 					  {% endif %}
 					  </td>
-					  <td> <a title="Редагувати"  href="{% url 'students_edit' student.id %}"> 
+					  <td> <a title="Редагувати"  href="{% url 'students_edit' student.id %}" class="modal-form-link"> 
 					       {{ student.last_name }} </td>
-					  <td> <a title="Редагувати"  href="{% url 'students_edit' student.id  %}">
+					  <td> <a title="Редагувати"  href="{% url 'students_edit' student.id  %}" class="modal-form-link">
 					       {{ student.first_name  }} </td>
 					  <td> {{ student.ticket }} </td>
 					  <td> 
@@ -87,7 +101,7 @@
 							  <a role="menuitem" tabindex="-1" href = "{% url 'journal' student.id %}">Відвідування</a>
 							</li>
 							<li role="presentation">
-							  <a role="menuitem" tabindex="-1" href = "{% url 'students_edit' student.id %}">Редагувати</a>
+							  <a role="menuitem" tabindex="-1" href = "{% url 'students_edit' student.id %}" class="modal-form-link">Редагувати</a>
 							</li >
 							<li role="presentation">
 							  <a role="menuitem" tabindex="-1" href = "{% url 'students_delete' student.id %}"> Видалити</a>
@@ -102,11 +116,11 @@
 							
 				  </tbody>
 			  </table>
-			   <!-- Start Studenrs Listing -->
 			  
+			  
+			   <!-- Start Studenrs Listing --> 
 			  {% include 'pagination.html' %}
-			  
-		  
+
 {% endblock content %}
 
 {% block footer %}

@@ -73,8 +73,9 @@ class EditExamForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        #self.helper.form_action = reverse('groups_edit',
-            #kwargs={'pk': kwargs['instance'].id})
+        #import pdb;pdb.set_trace();
+        self.helper.form_action = reverse('exam_edit',
+            kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -84,7 +85,7 @@ class EditExamForm(forms.ModelForm):
         self.helper.html5_required = False
         self.helper.form_show_labels = True
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-3'
+        self.helper.field_class = 'col-sm-6'
         self.helper.attrs = {'novalidate': ''}
         self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
             style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
@@ -166,8 +167,9 @@ class AddExamForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        #self.helper.form_action = reverse('groups_edit',
-            #kwargs={'pk': kwargs['instance'].id})
+        
+        #import pdb;pdb.set_trace();
+        self.helper.form_action = reverse('add_exam')
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -177,7 +179,7 @@ class AddExamForm(forms.ModelForm):
         self.helper.html5_required = False
         self.helper.form_show_labels = True
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-3'
+        self.helper.field_class = 'col-sm-5'
         self.helper.attrs = {'novalidate': ''}
         self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
             style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
@@ -186,7 +188,7 @@ class AddExamForm(forms.ModelForm):
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('add_button', u'Дадати', css_class="btn btn-primary"),
+            Submit('add_button', u'Додати', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         ))
 

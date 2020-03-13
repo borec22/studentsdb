@@ -1,0 +1,135 @@
+INFO 2020-03-11 08:27:40,176 signals: Student updated: Ivan Bondar (ID: 19)
+INFO 2020-03-11 08:29:10,366 signals: Student added: Andriy Kolesnik (ID: 28)
+INFO 2020-03-11 08:35:30,879 signals: Student delete: Andriy Kolesnik (ID: 28)
+INFO 2020-03-12 07:33:27,855 signals: Student updated: Teoma Bondarchuk (ID: 27)
+INFO 2020-03-12 09:04:54,533 signals: Group updated: NVPET-1000 (ID: 1)
+INFO 2020-03-12 09:07:26,877 signals: Group updated Serhii Romanchuk: NVPET-1000 (ID: 1)
+INFO 2020-03-12 09:13:03,829 signals: Student updated: Maxim Romanchuk (ID: 3)
+INFO 2020-03-12 09:13:27,370 signals: Group deleted: NVPET-657 (ID: 13)
+INFO 2020-03-12 09:31:32,293 signals: Exam updated: Алгоритми (ID: 25
+INFO 2020-03-12 09:31:56,208 signals: Exam updated: English (ID: 27)
+INFO 2020-03-12 09:36:33,258 signals: Exam deleted: CHeck (ID: 26)
+ERROR 2020-03-12 10:42:54,814 contact_admin: is it work!!!!
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 67, in form_valid
+    send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/__init__.py", line 62, in send_mail
+    return mail.send()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/message.py", line 348, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 104, in send_messages
+    new_conn_created = self.open()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 64, in open
+    self.connection = self.connection_class(self.host, self.port, **connection_params)
+  File "/usr/lib/python2.7/smtplib.py", line 256, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python2.7/smtplib.py", line 317, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python2.7/smtplib.py", line 292, in _get_socket
+    return socket.create_connection((host, port), timeout)
+  File "/usr/lib/python2.7/socket.py", line 557, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+gaierror: [Errno -2] Name or service not known
+ERROR 2020-03-12 10:51:22,111 contact_admin: ty
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 67, in form_valid
+    send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/__init__.py", line 62, in send_mail
+    return mail.send()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/message.py", line 348, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 104, in send_messages
+    new_conn_created = self.open()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 71, in open
+    self.connection.login(force_str(self.username), force_str(self.password))
+  File "/usr/lib/python2.7/smtplib.py", line 623, in login
+    raise SMTPAuthenticationError(code, resp)
+SMTPAuthenticationError: (535, '5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials h5sm1159525ljl.66 - gsmtp')
+ERROR 2020-03-12 10:59:05,896 contact_admin: cdxvd
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/__init__.py", line 62, in send_mail
+    return mail.send()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/message.py", line 348, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 104, in send_messages
+    new_conn_created = self.open()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 71, in open
+    self.connection.login(force_str(self.username), force_str(self.password))
+  File "/usr/lib/python2.7/smtplib.py", line 583, in login
+    self.ehlo_or_helo_if_needed()
+  File "/usr/lib/python2.7/smtplib.py", line 543, in ehlo_or_helo_if_needed
+    if not (200 <= self.ehlo()[0] <= 299):
+  File "/usr/lib/python2.7/smtplib.py", line 415, in ehlo
+    (code, msg) = self.getreply()
+  File "/usr/lib/python2.7/smtplib.py", line 369, in getreply
+    raise SMTPServerDisconnected("Connection unexpectedly closed")
+SMTPServerDisconnected: Connection unexpectedly closed
+ERROR 2020-03-12 10:59:16,606 contact_admin: ml,
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subjec, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+NameError: global name 'subjec' is not defined
+ERROR 2020-03-12 11:01:38,168 contact_admin: Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше.
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subjec, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+NameError: global name 'subjec' is not defined
+ERROR 2020-03-12 15:12:40,482 contact_admin: Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше.
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, messag, from_email, ['romanchuk.sss22121999@gmail.com'])
+NameError: global name 'messag' is not defined
+ERROR 2020-03-12 15:14:10,283 contact_admin: dsfcd
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, messag, from_email, ['romanchuk.sss22121999@gmail.com'])
+NameError: global name 'messag' is not defined
+ERROR 2020-03-12 15:16:07,017 contact_admin: Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше.
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, messag, from_email, ['romanchuk.sss22121999@gmail.com'])
+NameError: global name 'messag' is not defined
+ERROR 2020-03-12 15:16:47,339 contact_admin: Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше.
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/__init__.py", line 62, in send_mail
+    return mail.send()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/message.py", line 348, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 104, in send_messages
+    new_conn_created = self.open()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 64, in open
+    self.connection = self.connection_class(self.host, self.port, **connection_params)
+  File "/usr/lib/python2.7/smtplib.py", line 256, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python2.7/smtplib.py", line 317, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python2.7/smtplib.py", line 292, in _get_socket
+    return socket.create_connection((host, port), timeout)
+  File "/usr/lib/python2.7/socket.py", line 557, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+gaierror: [Errno -2] Name or service not known
+ERROR 2020-03-12 15:18:00,825 contact_admin: Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше.
+Traceback (most recent call last):
+  File "/data/work/virtualenvs/studentsdb/src/studentsdb/students/views/contact_admin.py", line 66, in form_valid
+    send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/__init__.py", line 62, in send_mail
+    return mail.send()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/message.py", line 348, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 104, in send_messages
+    new_conn_created = self.open()
+  File "/data/work/virtualenvs/studentsdb/local/lib/python2.7/site-packages/django/core/mail/backends/smtp.py", line 64, in open
+    self.connection = self.connection_class(self.host, self.port, **connection_params)
+  File "/usr/lib/python2.7/smtplib.py", line 256, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python2.7/smtplib.py", line 317, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python2.7/smtplib.py", line 292, in _get_socket
+    return socket.create_connection((host, port), timeout)
+  File "/usr/lib/python2.7/socket.py", line 557, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+gaierror: [Errno -2] Name or service not known

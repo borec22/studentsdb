@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from django.shortcuts import render
 from django import forms
 from django.core.mail import send_mail, BadHeaderError
@@ -7,7 +8,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 
 from django.views.generic.edit import FormView
-
 from studentsdb.settings import ADMIN_EMAIL
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -51,7 +51,7 @@ class ContactForm(forms.Form):
 class ContactAdminView(FormView):
     template_name = 'contact_admin/form.html'
     form_class = ContactForm
-    #success_url = 'students/students_list'
+    success_url = 'students/students_list'
 
     def get_success_url(self):
         return u'%s?status_message=Повідомлення успішно відправлено!' % reverse('contact_admin')
@@ -60,9 +60,16 @@ class ContactAdminView(FormView):
         """This method is called for valid data"""
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
+        #import pdb; pdb.set_trace()
         from_email = form.cleaned_data['from_email']
 
-        send_mail(subject, message, from_email, ['romanchuk.sss22121999@gmail.com'])
+        try:
+            send_mail(subject, message, [from_email], ['romanchuk.sss22121999@gmail.com'])
+
+        except Exception:
+            message="Під час відправки листа виникла помилка. Спробуйте будь-ласка пізніше."
+            logger = logging.getLogger(__name__)
+            logger.exception(message)
 
         return super(ContactAdminView, self).form_valid(form)
 

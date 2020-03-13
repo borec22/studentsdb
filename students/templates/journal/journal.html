@@ -16,7 +16,19 @@
 		  
 {% endblock logo %}
 
-{% block group_selector %} {% endblock group_selector %}
+{% block group_selector %}
+    <!-- Groups Selector -->
+  <div class="col-xs-4" id="group-selector">
+        <strong>Група:</strong>
+        <select class="custom-select">
+              <option value="" >Усі Групи </option>
+              {% for group in GROUPS %}
+        <option value="{{ group.id }}"{% if group.selected %} selected="1"{% endif %}> {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+        {% endfor %}
+        
+      </select>
+      </div>    
+{% endblock group_selector %}
 
 {% block status_message %}
    
@@ -91,9 +103,10 @@
       	</td>
         
         <td>
-          <a title="Редагувати" target="_blank" 
-             href="{% url 'students_edit' student.id %}"></a>
-             {{ student.fullname }}
+          <a title="Редагувати" 
+             href="{% url 'students_edit' student.id %}" class="modal-form-link">
+               {{ student.fullname }}
+             </a>
         </td>
 
         {% for day in student.days %}

@@ -32,46 +32,7 @@
 
 {% block content %}
 
- <form method='POST' enctype="multipart/form-data" action="{% url 'groups_edit' id %}" class="form-horizontal">
- 	{% csrf_token %}
- 	<div class="form-group row {% if errors.title %}has-error{% endif %}">
- 		<label for="title" class="col-sm-2 control-label">Назва групи*</label>
- 		<div class="col-sm-10">
- 		  {% for group in groups %}
- 		  <input type="text" name="title" id="title" class="form-control" value="{{group.title}}" placeholder="Введіть назву групи" />
- 		  {% endfor %}
- 		  <span class="help-block" style="color: #801a00">{{errors.title}}</span>
- 		</div>
- 	</div>
- 	<div class="form-group row {% if errors.leader %}has-error{% endif %}">
- 		<label for="leader" class="col-sm-2 control-label">Староста групи*</label>
- 		<div class="col-sm-10">  
- 		  <select name="leader" id="leader" class="form-control">
- 			  {% for group in groups %}
- 			  <option value="{{group.leader.id}}"> {{group.leader}} </option>
- 			  {% endfor %}
-              {% for student in students %}
- 			  <option value="{{student.id}}">{{student.first_name}} {{student.last_name}}</option>
- 			  {% endfor %}
- 		  </select>
-          <span class="help-block" style="color: #801a00">{{errors.leader}}</span>
- 		</div>
- 	</div>
- 	<div class="form-group row">
- 		<label for="notes" class="col-sm-2 control-label">Додаткові дані</label>
- 		<div class="col-sm-10">  
- 		{% for group in groups %}
- 		  <textarea id="notes" name="notes" placeholder="Додаткові дані..." class="form-control">{{group.notes}}</textarea>
- 		{% endfor %}
- 		</div>
- 	</div>
- 	<div>
-        <div class="col-sm-offset-2 col-sm-10" id="buttons-form">
- 		  <button name="save_button" id="save_button" value="save_button">Зберегти</button>
- 		  <input type="submit" name="cancel_button" id="cancel_button" value="Скасувати" />
- 		</div>
- 	</div>
- </form>
+ {% crispy form %}
 
 {% endblock content %}
 
