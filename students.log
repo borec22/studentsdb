@@ -133,3 +133,10 @@ Traceback (most recent call last):
   File "/usr/lib/python2.7/socket.py", line 557, in create_connection
     for res in getaddrinfo(host, port, 0, SOCK_STREAM):
 gaierror: [Errno -2] Name or service not known
+INFO 2020-03-13 10:26:22,440 signals: Student updated: Ivan2 Bondar (ID: 19)
+INFO 2020-03-13 10:28:26,756 signals: Student updated: Ivan Bondar (ID: 19)
+INFO 2020-03-13 10:36:45,772 signals: Student updated: Ivan2 Bondar (ID: 19)
+INFO 2020-03-13 10:39:08,885 signals: Group updated: NVPET-1000 (ID: 1)
+INFO 2020-03-13 10:41:13,761 signals: Exam updated: English (ID: 27)
+INFO 2020-03-13 10:42:02,023 signals: Exam added: Python (ID: 29)
+INFO 2020-03-13 10:46:00,719 signals: Exam delete: Python (ID: 29)
