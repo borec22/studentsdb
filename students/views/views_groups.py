@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.utils.translation import ugettext as _
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -53,21 +53,21 @@ def groups_add(request):
 
             title = request.POST.get('title').strip()
             if  not title:
-                errors['title'] = u"Назва групи є обов'язковою"
+                errors['title'] = _(u"Title of group is required")
             else:
                 groups = Group.objects.filter(title = title) 
                 if len(groups) > 0:
-                    errors['title'] = u"Дана назва групи вже існує."
+                    errors['title'] = _(u"This title of group alredy exist.")
                 data['title'] = title
 
             leader = request.POST.get('leader').strip()
             if not leader:
-                errors['leader'] = u"Вибір старости групи є обов'язковим"
+                errors['leader'] = _(u"Choice leader is required")
             else:
                 # check or leader is not leader another group
                 leaders = Group.objects.filter(leader = leader)
                 if len(leaders) == 1:
-                    errors['leader'] = u"Цей студент є старостою іншої групи!" 
+                    errors['leader'] = _(u"This student is leader another group!") 
                 else:
                     data['leader'] = Student.objects.get(pk = request.POST['leader'])
             
@@ -80,8 +80,7 @@ def groups_add(request):
                 group.save()
                 
                 # redirect user to list group
-                return HttpResponseRedirect(u'%s?status_message=Групу %s успішно додано!' \
-                       % (reverse('groups'), request.POST['title']))
+                return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), _(u'Added group %s successfully!' %request.POST['title'] ))) 
 
             else:
                 return render(request, 'groups/groups_add.html', \
@@ -90,7 +89,7 @@ def groups_add(request):
 
         if request.POST.get('cancel_group_button') is not None:
             # redirect to list group
-            return HttpResponseRedirect(u'%s?status_message=Додавання групи скасовано!' % reverse('groups'))
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), _(u'Adding group has been canceld!')))
     
     else: 
         return render(request, 'groups/groups_add.html', \
@@ -99,71 +98,6 @@ def groups_add(request):
         
     return render (request, 'groups/groups_add.html', \
         {'leaders': Student.objects.all().order_by('last_name')})
-
-#def groups_edit(request, gid):
-    # check groups that checked on page groups with 
-    #groups = Group.objects.filter(id=gid)
-
-    #if request.method == 'POST':
-
-        #if request.POST.get('save_button') is not None:
-
-            #data = {'notes': request.POST['notes']}
-            #errors = {}
-
-            #title = request.POST.get('title', '').strip()
-            #if not title:
-                #errors['title'] = u"Назва групи є обов'язковою"
-            #else:
-                #GROUPS = Group.objects.filter(title=request.POST['title'])
-                #if len(GROUPS) > 0:
-                    #errors['title'] = u'Дана назва групи вже існує.'
-                #else:
-                    #data['title'] = request.POST['title']
-
-            #leader = request.POST.get('leader', '').strip()
-            #if not leader:
-                #errors['leader'] = u"Вибір старости є обов'язковим"
-            #else:
-                #leaders = Group.objects.filter(leader = leader)
-                #if len(leaders) > 0:
-                    #errors['leader'] = u"Цей студент є старостою іншої групи!"
-                #else:
-                    #data['leader'] = Student.objects.get(pk=request.POST['leader'])
-
-            #if not errors:
-
-                #group = Group.objects.get(pk=gid)
-                #group.title = data['title']
-                #group.leader = data['leader'] #data['leader']
-                #group.notes = request.POST['notes']  #data['notes']
-                #group.save()
-                #group = Group(
-                    #title = request.POST['title'],
-                    #leader = Student.objects.get(pk=request.POST['leader']),
-                    #notes = request.POST['notes'])
-
-                #group.update()
-
-                #return HttpResponseRedirect(u'%s?status_message=Групу успішно збережено!' \
-                       #% reverse('groups'))
-
-            #else:
-                #return render(request, 'groups/groups_edit.html', \
-                    #{'id': gid, 'students': Student.objects.all().order_by('last_name'), \
-                     #'groups': groups, 'errors': errors})
-
-        #elif request.POST.get('cancel_button') is not None:
-            #return HttpResponseRedirect(u'%s?status_message=Редагування групи скасовано.'\
-                   #% reverse('groups'))
-    #else:
-        #return render(request, 'groups/groups_edit.html', \
-          #{'id': gid, 'students': Student.objects.all().order_by('last_name'), \
-           #'groups': groups})
-
-    #return render(request, 'groups/groups_edit.html', \
-           #{'id': gid, 'students': Student.objects.all().order_by('last_name'), \
-            #'groups': groups})
 
 #   CLASS FORM AND VIEW PROCEESS EDIT GROUP
     
@@ -195,8 +129,8 @@ class GroupUpdateForm(ModelForm):
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('save_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            Submit('save_button', _(u'Save'), css_class="btn btn-primary"),
+            Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
         ))
 
 class GroupUpdateView(UpdateView):
@@ -206,12 +140,12 @@ class GroupUpdateView(UpdateView):
     form_class = GroupUpdateForm
 
     def get_success_url(self):
-        return u'%s?status_message=Групу успішно збережено!' % reverse('groups')
+        return u'%s?status_message=%s' % (reverse('groups'), _(u'Updated group successfully!'))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             return HttpResponseRedirect(
-                u'%s?status_message=Редагування групи відмінено!' % reverse('home'))
+                u'%s?status_message=%s' % (reverse('groups'), _(u'Edding of group has been canceled!')))
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
     
@@ -231,26 +165,15 @@ def GroupDeleteView(request, gid):
                 group.delete()
             except ProtectedError: 
 
-                message = u'Видалення групи не можливо, оскільки в ній присутні інші студенти!' 
+                message = _(u'Delete group imposible because it has another students!') 
             else:
-                message = u'Групу успішно видалено!' 
+                message = _(u'Deleted group successfully!') 
             
             # redirect in main page groups
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), message))
 
         # if user check button cancel
         elif request.POST.get('cancel_button') is not None:
-            return HttpResponseRedirect(u'%s?status_message=Видалення групи скасовано' % reverse('groups'))
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), _(u'Deleting of group has been canceled!')))
 
     return render(request, 'groups/groups_delete.html', {'groups': groups, 'gid':gid})
-
-
-
-            # check whether user data is valid
-
-
-        #return u'%s?status_message=Групу успішно видалено!' % reverse('groups')
-        
-
-#def groups_delete(request, gid):
-    #return HttpResponse('<h1> Delete Group %s </h1>' % gid)

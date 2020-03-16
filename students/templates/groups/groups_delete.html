@@ -1,28 +1,29 @@
 {% extends 'students/base.html' %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %} Видалити Групу {% endblock meta_title %}
+{% block meta_title %} {% trans "Delete Group" %} {% endblock meta_title %}
 
 {% block logo %} 
 
        <!-- Logo -->
      <div class="col-xs-8">
-       <h1> Сервіс Обліку Студентів </h1>
+       <h1> {% trans "Students Accounting Service" %} </h1>
      </div>
       
 {% endblock logo %}
 
 
-{% block title %} Видалити Групу {% endblock title %}
+{% block title %} {% trans "Delete Group" %} {% endblock title %}
 
 {% block status_message %}
 
     {% if errors %}
     
     <div class='alert alert-danger' role="alert">
-      Будь-ласка, виправте наступні помилки
+      {% trans "Please, edit next errors" %}
     </div>
 
     {% endif %}
@@ -33,13 +34,14 @@
 {% block content %}  
 
 	{% for group in groups %}
+
 	{% if gid|add:0 == group.id %}
     <form method="POST" action="{% url 'groups_delete' group.id %}" >
     	{% csrf_token %}
-    	<p> Ви дійсно хочете видалити групу {{ group.title }}</p>
+    	<p> {% blocktrans with group=group.title %}Do you really want to delete group: "{{ group }}"?{% endblocktrans %}</p>
     	<div id="buttons_groups_delete">
-    	  <button name="delete_button" class="btn btn-danger">Так</button>
-    	  <button name="cancel_button" class="btn btn-danger">Ні</button>
+    	  <button name="delete_button" class="btn btn-danger">{% trans "Yes" %}</button>
+    	  <button name="cancel_button" class="btn btn-danger">{% trans "No" %}</button>
     	</div>
     </form>
     {% endif %}

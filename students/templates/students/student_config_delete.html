@@ -1,42 +1,29 @@
 {% extends 'students/base.html' %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
 
-{% block meta_title %} Видалити Студента {% endblock meta_title %}
+{% block meta_title %} {% trans "Delete Student" %} {% endblock meta_title %}
 
-{% block title %} Видалити Студента {% endblock title %}
+{% block title %} {% trans "Delete Student" %} {% endblock title %}
 
 {% block logo %} 
 
 	     <!-- Logo -->
 		 <div class="col-xs-8">
-		   <h1> Сервіс Обліку Студентів </h1>
+		   <h1> {% trans "Students Accounting Service" %} </h1>
 		 </div>
 		  
 {% endblock logo %}
-
-{% block group_selector %}
-		  <!-- Groups Selector -->
-		  <div class="col-xs-4" id="group-selector">
-		    <strong>Група:</strong>
-		    <select class="custom-select">
-              <option value="" >Усі Студенти </option>
-			  <option value="" >457 Група, Романчук Сергій (№ 100) </option>
-			  <option value="" >453 Група, Романчук Максим (№ 24) </option>
-			  <option value="" >455 Група, Гнітецький Ярослав (№ 02) </option>
-			  
-			</select>
-		  </div>
-{% endblock group_selector %}
 
 {% block status_message %}
     {{ form.errors }}
     {% if form.errors %}
     
     <div class='alert alert-danger' role="alert">
-      Будь-ласка, виправте наступні помилки
+      {% trans "Please, edit next errors" %}
     </div>
 
     {% endif %}
@@ -48,8 +35,8 @@
   
   <form action="{% url 'students_delete' object.id %}" method="post">
   	{% csrf_token %}
-  	<p> Ви дійсно хочете видалити студента "{{ object }}"?  </p>
-  	<input type="submit" value="Так" name="delete_button" 
+  	<p> {% blocktrans %}Do you realy want to delete student: "{{ object }}"? {% endblocktrans %} </p>
+  	<input type="submit" value="{% trans 'Yes' %}" name="delete_button" 
   	       class="btn btn-danger" /> <br /> <br />
     
   </form>

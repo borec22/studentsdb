@@ -31,7 +31,7 @@ def log_student_updated_added_event(sender, **kwargs):
         else:
     	    logger.info("Group updated: %s (ID: %d)", group.title,\
     		         group.id)
-    else:
+    elif sender == Exam:
     	exam = kwargs['instance']
         if kwargs['created']:
     	    logger.info("Exam added: %s (ID: %d)", exam.subject,\

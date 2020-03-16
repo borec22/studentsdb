@@ -29,6 +29,9 @@ from .settings import MEDIA_ROOT, DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
 
+js_info_dict = {
+    'packages': ('students',),
+}
 
 urlpatterns = [
     # Students urls
@@ -64,6 +67,7 @@ urlpatterns = [
         name='contact_form_sent'),
     
     url(r'^admin/', admin.site.urls),
+    url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

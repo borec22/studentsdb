@@ -1,28 +1,29 @@
 {% extends 'students/base.html' %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %} Видалити Екзамен {% endblock meta_title %}
+{% block meta_title %} {% trans "Delete Exam" %} {% endblock meta_title %}
 
 {% block logo %} 
 
        <!-- Logo -->
      <div class="col-xs-8">
-       <h1> Сервіс Обліку Студентів </h1>
+       <h1> {% trans "Students Accounting Service" %} </h1>
      </div>
       
 {% endblock logo %}
 
 
-{% block title %} Видалати Екзамен {% endblock title %}
+{% block title %} {% trans "Delete Exam" %} {% endblock title %}
 
 {% block status_message %}
 
     {% if errors %}
     
     <div class='alert alert-danger' role="alert">
-      Будь-ласка, виправте наступні помилки
+      {% trans "Please, edit next errors" %}
     </div>
 
     {% endif %}
@@ -32,11 +33,11 @@
 {% block content %}     
   <form action="{% url 'exam_delete' object.id %}" method="post">
     {% csrf_token %}
-    <p> Ви дійсно хочете видалити екзамен "{{object}}"</p>
+    <p> {% blocktrans %}Do you realy want to delete exam: "{{ object }}"? {% endblocktrans %}</p>
 
     <div id="buttons_groups_delete">
-        <button name="delete_button" class="btn btn-danger">Так</button>
-        <button name="cancel_button" class="btn btn-danger">Ні</button>
+        <button name="delete_button" class="btn btn-danger">{% trans "Yes" %}</button>
+        <button name="cancel_button" class="btn btn-danger">{% trans "No" %}</button>
       </div>
     
   </form>

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 {% block body_block %} {% endblock body_block %}
@@ -7,9 +8,9 @@
 
   <head>
     <meta charset="UTF-8"/>
-	<title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
+	<title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
 	<meta name="description"
-	          value="Система Обліку Студентів Навчального Закладу" />
+	          value="{% trans 'App to manage students database' %}" />
 	<meta name='viewport'
          content='width=device-width, initial-scale=1'>
 	
@@ -46,11 +47,11 @@
 		<div class="row" id="sub-header">
 		  <div class="col-xs-12">
 		    <ul class="nav nav-tabs" role="tablist">
-                 <li role="presentation" {% if request.path == '/' %} class="active"{% endif %}><a href="{% url 'home' %}">Студенти</a></li>
-                 <li role="presentation" {% if '/journal' in request.path %} class="active"{%endif%}><a href="{% url 'journal' %}">Відвідування</a></li>
-                 <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}> <a href="{% url 'groups' %}">Групи</a></li>
-                 <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">Іспити</a> </li>
-                 <li role="presentation" {% if '/contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'contact_admin' %}"> Контакт </a> </li>
+                 <li role="presentation" {% if request.path == '/' %} class="active"{% endif %}><a href="{% url 'home' %}">{% trans "Students" %}</a></li>
+                 <li role="presentation" {% if '/journal' in request.path %} class="active"{%endif%}><a href="{% url 'journal' %}">{% trans "Journal" %}</a></li>
+                 <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}> <a href="{% url 'groups' %}">{% trans "Groups" %}</a></li>
+                 <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">{% trans "Exams" %}</a> </li>
+                 <li role="presentation" {% if '/contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'contact_admin' %}"> {% trans "Contact" %} </a> </li>
                  <!-- <li role="presentation" {% if '/django-contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'django-contact-admin' %}"> Контакт DCA </a> </li> -->
             </ul>
 		  </div>
@@ -88,7 +89,7 @@
 		<!-- Start Footer -->
 		<div class="row" id="footer">
 		  <div class="col-xs-12">
-		   &copy; 2020 Сервіс Обліку Студентів
+		   &copy; 2020 {% trans "Students Accounting Service" %}
 		  </div>
 		</div>
 		<!-- End Footer -->
@@ -124,6 +125,7 @@
 	 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"> 
  </script>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js"></script>
+     <script src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
      <script src="{% static 'js/main.js' %}"></script>
      {% block extra_js %}{% endblock extra_js %}
    </body>

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.utils.translation import ugettext as _
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -42,23 +43,23 @@ def exam_list(request):
 class EditExamForm(forms.ModelForm):
 
     subject = forms.CharField(max_length=100,
-                 label = 'Назва предмету',
+                 label = _(u'Subject'),
                  widget = forms.TextInput
-                 (attrs={'placeholder': 'Введіть назву предмету'}))
+                 (attrs={'placeholder': _(u'Enter name of subject')}))
 
-    data_and_time = forms.DateTimeField(label = 'Дата та час',
+    data_and_time = forms.DateTimeField(label = _(u'Data and time'),
                  input_formats=["%d/%m/%Y %H:%M:%S"],
                  widget = forms.DateTimeInput( 
                     attrs={'placeholder':"DD/MM/YYYY HH:MM:SS"}
                  #attrs={'placehilder': 'Дата та час'})
                  ))
     teacher = forms.CharField(max_length=100,
-                 label = 'Викладач',
+                 label = _(u'Teacher'),
                  widget = forms.TextInput
-                 (attrs={'placeholder': 'Введіть Прізвище І.Б. викладача'}))
+                 (attrs={'placeholder': _(u'Enter last name/first name/middle name of teacher')}))
 
     examenation = forms.ModelMultipleChoiceField(
-                 label= 'Складають іспит',
+                 label= _(u'Take of exam'),
                  widget = forms.CheckboxSelectMultiple(),
                  queryset = Group.objects.all().order_by('title')
                  )
@@ -94,8 +95,8 @@ class EditExamForm(forms.ModelForm):
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('save_button', u'зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            Submit('save_button', _(u'Save'), css_class="btn btn-primary"),
+            Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
         ))
 
 class exam_edit(UpdateView):
@@ -104,13 +105,11 @@ class exam_edit(UpdateView):
     template_name = 'exams/exams_edit.html'
 
     def get_success_url(self):
-        return u'%s?status_message=Екзамен успішно змінено!' \
-               % reverse('exam')
+        return u'%s?status_message=%' % (reverse('exam'), _(u'Updated exam successfully'))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u'%s?status_message=Редагування екзамену скасовано!' \
-                                       % reverse('exam'))
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Edding of exam has been canceled!')))
         else:
             return super(exam_edit, self).post(request, *args, **kwargs)
 
@@ -122,13 +121,11 @@ class exam_delete(DeleteView):
     template_name = 'exams/exams_delete.html'
 
     def get_success_url(self):
-        return u'%s?status_message=Екзамен успішно видалено!' \
-               % reverse('exam')
+        return u'%s?status_message=%s' % (reverse('exam'), _(u'Delete exam successfully!'))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button') is not None:
-            return HttpResponseRedirect(u'%s?status_message=Видалення екзамену скасовано!' \
-                                       % reverse('exam'))
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Deleting of exam has been canceled!')))
         else:
             return super(exam_delete, self).post(request, *args, **kwargs)
 
@@ -136,23 +133,23 @@ class exam_delete(DeleteView):
 class AddExamForm(forms.ModelForm):
 
     subject = forms.CharField(max_length=100,
-                 label = 'Назва предмету',
+                 label = _(u'Subject'),
                  widget = forms.TextInput
-                 (attrs={'placeholder': 'Введіть назву предмету'}))
+                 (attrs={'placeholder': _(u'Enter name of subject')}))
 
-    data_and_time = forms.DateTimeField(label = 'Дата та час',
+    data_and_time = forms.DateTimeField(label = _(u'Data and time'),
                  input_formats=["%d/%m/%Y %H:%M:%S"],
                  widget = forms.DateTimeInput( 
                     attrs={'placeholder':"DD/MM/YYYY HH:MM:SS"}
                  #attrs={'placehilder': 'Дата та час'})
                  ))
     teacher = forms.CharField(max_length=100,
-                 label = 'Викладач',
+                 label = _(u'Teacher'),
                  widget = forms.TextInput
-                 (attrs={'placeholder': 'Введіть Прізвище І.Б. викладача'}))
+                 (attrs={'placeholder': _(u'Enter last name/first name/middle name of teacher')}))
 
     examenation = forms.ModelMultipleChoiceField(
-                 label= 'Складають іспит',
+                 label= _(u'Take of exam'),
                  widget = forms.CheckboxSelectMultiple(),
                  queryset = Group.objects.all().order_by('title')
                  )
@@ -188,8 +185,8 @@ class AddExamForm(forms.ModelForm):
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('add_button', u'Додати', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            Submit('add_button', _(u'Add'), css_class="btn btn-primary"),
+            Submit('cancel_button', _(u'Сancel'), css_class="btn btn-link"),
         ))
 
 class add_exam(CreateView):
@@ -198,13 +195,11 @@ class add_exam(CreateView):
     template_name = 'exams/exams_add.html'
 
     def get_success_url(self):
-        return u'%s?status_message=Екзамен успішно додано!' \
-               % reverse('exam')
+        return u'%s?status_message=%' % (reverse('exam'), _(u'Exam added successfully!'))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u'%s?status_message=Створення екзамену скасовано!' \
-                                       % reverse('exam'))
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Adding of exam has been canceled!')))
         else:
             return super(add_exam, self).post(request, *args, **kwargs)
 
