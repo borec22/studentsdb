@@ -1,9 +1,21 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.translation import ugettext as _
+
+def get_language_from_request(request):
+	if request.COOKIES.get('django_language') == 'en':
+		return 'en'
+	elif request.COOKIES.get('django_language') == 'uk':
+		return _(u'uk')
+	else:
+		return none
+	
 
 def get_current_group(request):
 	"""Returns currently selected group or None"""
 
 	# we remember selected group in a cookie
+	#import pdb; pdb.set_trace()
+	language = request.COOKIES.get('django_language')
 	pk = request.COOKIES.get('current_group')
 
 	if pk:

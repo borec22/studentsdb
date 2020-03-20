@@ -156,7 +156,6 @@ class StudentUpdateForm(ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        #import pdb; pdb.set_trace();
         self.helper.form_action = reverse('students_edit',
             kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'

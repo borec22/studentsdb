@@ -18,20 +18,42 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 10px;
 }
   
-  /* Group Selector */
-  #group-selector  {
-	  margin-top: 25px;
-  }
+/* Group Selector */
+#group-selector  {
+	margin-top: 25px;
+}
   
-  #group-selector select {
-	  margin: 10;
-	  width: 85%;
-	  background-color:  #ffffff;
-	  border: 1px solid #cccccc;
-	  height: 30px;
-	  line-height: 30px;
-	  color:  #555555;
-  }
+#group-selector select {
+	margin: 10;
+	width: 85%;
+	background-color:  #ffffff;
+	border: 1px solid #cccccc;
+	height: 30px;
+	line-height: 30px;
+	color:  #555555;
+}
+
+/* Change Language */
+
+#lang-selector {
+  margin-top: 25px;
+  margin-left: 0px;
+  text-align: right;
+}
+
+#lang-selector select {
+  margin: 10;
+  width: 30%;
+  height: 30px;
+  line-height: 30px;
+}
+
+/* User's Toolbar */
+#user-toolbar {
+  margin-top: 30px;
+  text-align: right;
+}
+
   
 /* Редагування кнопки додати  */
 #group-add {

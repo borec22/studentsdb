@@ -23,8 +23,10 @@ from students.views.django_contact_admin import *
 
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.views.i18n import javascript_catalog
+from django.contrib.auth import views as auth_views
 
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView, TemplateView
 from .settings import MEDIA_ROOT, DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
@@ -65,9 +67,21 @@ urlpatterns = [
             template_name='contact_admin/django_contact_form_sent.html'
         ),
         name='contact_form_sent'),
+
+    # User Related urls
+    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, \
+                                               name='auth_logout'),
+    url('^reset-password/$', auth_views.password_reset, \
+                                          name='auth_password_reset'),
+    url('^reset-password/done/$', auth_views.password_reset_done, \
+                                          name='password_reset_done'),
+    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'),\
+                                          name='registration_complete'),
+    url(r'^users/', include('registration.backends.simple.urls',
+                                               namespace='users')),
     
     url(r'^admin/', admin.site.urls),
-    url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
+    url(r'^jsi18n\.js$', javascript_catalog , js_info_dict, name='javascript-catalog'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

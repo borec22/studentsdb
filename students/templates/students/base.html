@@ -17,11 +17,14 @@
 	<!-- Include styles -->
 	<link rel="stylesheet"
         href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <style type="text/css">.col-xs-12, .col-xs-4, .col-xs-8, .col-xs-6, .col-xs-2 {border: 1px solid red;}</style>
     <link rel="stylesheet"
         href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" 
 			 href="{{ PORTAL_URL }} {% static 'css/main.css' %} ">
+	<link rel="stylesheet" 
+			 href="{{ PORTAL_URL }} {% static 'stud_auth/static/css/main.css' %} ">
 			 
     	 
 	{% block extra_css %}{% endblock extra_css %}
@@ -34,13 +37,51 @@
 	<div class="container">
 	
 	   <!-- Start Header -->
-	   <div class="row" id="header">
-	   
-	      {% block logo %} {% endblock logo %}
+	    <div class="row" id="header"> 
+          <div class="col-xs-6">
+            <h1>{% trans "Students Accounting Service" %}</h1>
+          </div>
+          {% if user.is_authenticated %}
+          <div class="col-xs-4" id="group-selector">
+            <strong>{% trans "Group" %}</strong>
+            <select>
+              <option value="">{% trans "All Students" %}</option>
+              {% for group in GROUPS %}
+              <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>  {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <!-- User's toolbar for authentification users -->
+          <div class="col-xs-2" id="user-toolbar">
+          	{% if user.first_name and user.last_name %}
+          	<span>{{user.last_name }} {{user.first_name }}</span> |
+          	<a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
+            {% else %}
+            <span>{{user.username }}</span> |
+          	<a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
+          	{% endif %}
+          </div>
+
+          {% else %}
+
+          <!-- User's toolbar for anonymous users -->
+          <div class="col-xs-6" id="user-toolbar">
+          	<a href="{% url 'users:auth_login' %}">{% trans "Login" %}</a> |
+          	<a href="{% url 'users:registration_register' %}">{% trans "Register" %}</a>
+          </div>
+          {% endif %}
+
+          <!-- field select for choise or chainge language -->
+          <div class="col-xs-2" id="lang-selector">
+            <select>
+              <option value="">{{LANGUAGE}}</option>
+              <option value="uk">uk</option>
+              <option value="en">en</option>  
+            </select>
+          </div>
+        </div>
 		  
-		  {% block group_selector %} {% endblock group_selector %}
-		  
-		</div>
 		<!-- End Header -->
 		
 		<!-- Start SubHeader -->
@@ -125,7 +166,7 @@
 	 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"> 
  </script>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js"></script>
-     <script src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+     <script src="{% url 'javascript-catalog' %}"></script>
      <script src="{% static 'js/main.js' %}"></script>
      {% block extra_js %}{% endblock extra_js %}
    </body>

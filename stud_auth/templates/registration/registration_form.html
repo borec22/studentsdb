@@ -1,0 +1,31 @@
+{% extends 'students/base.html' %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block meta_title %}{% trans "Register Form" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Register Form" %}{% endblock title %}
+
+{% block status_message %}
+{% if form.errors %}
+<div class="alert alert-warning" role="alert"> {% trans  "Please, correct the following errors." %} {{ form.non_field_errors }}</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% crispy form %}
+{% endblock content %}
+
+{% block footer %}
+
+		<!-- Start Footer -->
+		<div class="row" id="footer">
+		  <div class="col-xs-12">
+		   &copy; 2020 {% trans "Students Accounting Service" %}
+		  </div>
+		</div>
+		<!-- End Footer -->
+		
+{% endblock footer %}

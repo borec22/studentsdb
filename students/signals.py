@@ -54,7 +54,7 @@ def log_student_deleted_event(sender, **kwargs):
         group = kwargs['instance']
         logger.info("Group delete: %s (ID: %d)", group.title,\
     		         group.id)
-    else:
+    elif sender==Exam:
     	exam = kwargs['instance']
         logger.info("Exam delete: %s (ID: %d)", exam.subject,\
     		         exam.id)

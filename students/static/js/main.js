@@ -182,6 +182,26 @@ function initEditStudentForm(form, modal) {
   });
 }
 
+function initLangSelector(){
+  $('#lang-selector select').change(function(event){
+    //get value of currently selected language option
+    var lang = $(this).val();
+    if(lang) {
+      //set cookie with expiration date 1 year since now;
+      //cookie creation function takes period in days
+      $.cookie('django_language', lang, {'path': '/', 'expires': 365});
+    } else {
+      //otherwithe we delete cookie
+      $.removeCookie('django_language', {'path': '/'});
+    }
+
+    // and reload a page
+    location.reload(true);
+
+    return true;
+  });
+};
+
 
 
 
@@ -190,9 +210,6 @@ $(document).ready(function(){
   initGroupSelector();
   initDateFields();
   initEditStudentPage();
-  
-  //$(".student-edit-form-link").click(function() {
-  //	$("#ajax-progres-indicator-edit-students").hide();
-  //});
+  initLangSelector();
 
 });

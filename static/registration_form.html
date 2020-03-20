@@ -1,0 +1,62 @@
+{% extends 'students/base.html' %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Register Form" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Register Form" %}{% endblock title %}
+
+{% block status_message %}
+{% if form.errors %}
+<div class="alert alert-warning" role="alert"> {% trans  "Please, correct the following errors." %} {{ form.non_field_errors }}</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'users:registration_register' %}" method="post">
+
+	{% csrf_token %}
+	<input type="hidden" name="next" value="{% url 'home' %}" />
+
+	<div class="form-group">
+		<label for="login">{% trans "Your Username" %}</label>
+		<input type="text" name="username" class="form-control" id="login" value="" />
+		<span class="help-block">{{ form.errors.username.as_text }}</span>
+	</div>
+
+	<div class="form-group">
+		<label for="email">{% trans "Your Email" %}</label>
+		<input type="text" name="email" class="form-control" id="email" value="" />
+		<span class="help-block">{{ form.errors.email.as_text }}</span>
+	</div>
+
+	<div class="form-group">
+		<label for="password">{% trans "Your Password" %}</label>
+		<input type="password" name="password1" class="form-control" id="password" value="" />
+		<span class="help-block">{{ form.errors.password1.as_text }}</span>
+	</div>
+
+	<div class="form-group">
+		<label for="password-confirm">{% trans "Confirm Password" %}</label>
+		<input type="password" name="password2" class="form-control" id="password-confirm" value="" />
+		<span class="help-block">{{ form.errors.password2.as_text }}</span>
+	</div>
+
+	<button type="submit" class="btn btn-primary">{% trans "Register" %}</button>
+	
+</form>
+
+{% endblock content %}
+
+{% block footer %}
+
+		<!-- Start Footer -->
+		<div class="row" id="footer">
+		  <div class="col-xs-12">
+		   &copy; 2020 {% trans "Students Accounting Service" %}
+		  </div>
+		</div>
+		<!-- End Footer -->
+		
+{% endblock footer %}
