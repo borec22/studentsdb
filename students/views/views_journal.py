@@ -10,6 +10,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from students.models.monthjournal import MonthJournal
 from students.models.students_model import Student
@@ -127,3 +129,7 @@ class JournalView(TemplateView):
 
         # return success status
         return JsonResponse({'status': 'success'})
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(JournalView, self).dispatch(*args, **kwargs)

@@ -118,6 +118,10 @@ REGISTRATION_OPEN = True
 
 LOGIN_REDIRECT_URL = 'home'
 
+LOGIN_URL = 'users:auth_login'
+
+LOGOUT_URL = 'users:auth_logout'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 

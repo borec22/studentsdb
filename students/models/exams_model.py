@@ -18,7 +18,7 @@ class Exam(models.Model):
         verbose_name=_(u"Subject")
     )
 
-    data_and_time = models.DateTimeField(
+    data = models.DateField(
         blank=False,
         null=True,
         verbose_name=_(u"Data")

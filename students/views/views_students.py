@@ -7,6 +7,8 @@ from datetime import datetime
 from django.forms import ModelForm, ValidationError
 from django.views.generic import UpdateView, DeleteView
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django import forms
 
 from crispy_forms.helper import FormHelper
@@ -17,7 +19,7 @@ from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 
 from students.models.students_model import Student
 from students.models.groups_model import Group
-from ..util import paginate, get_current_group
+from ..util import paginate, get_current_group, DispatchLoginRequired
 
 
 def students_list(request):
@@ -41,10 +43,12 @@ def students_list(request):
     context = paginate(students, 3, request, {}, var_name="students")
     return render(request, 'students/students_list.html', context)
 
+@login_required
 def students_add(request):
     # was form posted?
     if request.method == "POST":
         #was form add button clicked?
+        #import pdb;pdb.set_trace()
         if request.POST.get('add_button') is not None:
 
             # errors collection
@@ -175,7 +179,7 @@ class StudentUpdateForm(ModelForm):
         #add buttons
         self.helper.layout.fields.append(FormActions(
             Submit('add_button', _(u'Save'), css_class="btn btn-primary"),
-            Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
+            Submit('cancel_button_student_update', _(u'Cancel'), css_class="btn btn-link"),
         ))
 
 class StudentUpdateView(UpdateView):
@@ -187,20 +191,35 @@ class StudentUpdateView(UpdateView):
     def get_success_url(self):
         return u'%s?status_message=%s' % (reverse('home'), \
             _(u'Student updated successfully!'))
-
+    
+    
     def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
+        if request.POST.get('cancel_button_student_update') is not None:
             return HttpResponseRedirect(
                 u'%s?status_message=%s' % (reverse('home'), _(u'Editing of student has been cancelled!')))
         else:
+            #import pdb; pdb.set_trace()
             return super(StudentUpdateView, self).post(request, *args, **kwargs) 
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentUpdateView, self).dispatch(*args, **kwargs)
+        
+    
+
+
 
 class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/student_config_delete.html'
 
     def get_success_url(self):
-        return u'%s?status_message=%s' % (reverse('home'), _(u'Student deleted successfully!'))
+        return u'%s?status_message=%s' % (reverse('home'), \
+                _(u'Student deleted successfully!'))
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentDeleteView, self).dispatch(*args, **kwargs)
 
 
     

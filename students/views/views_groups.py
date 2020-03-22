@@ -6,6 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from django.views.generic import UpdateView, DeleteView
 from django.forms import ModelForm
@@ -39,7 +41,7 @@ def groups_list(request):
     context = paginate(groups, 2, request, {}, var_name="groups")
     return render (request,'groups/list_group.html', context)
 
-    
+@login_required   
 def groups_add(request):
     # check if form was posted?
     if request.method == "POST": 
@@ -130,8 +132,9 @@ class GroupUpdateForm(ModelForm):
         #add buttons
         self.helper.layout.fields.append(FormActions(
             Submit('save_button', _(u'Save'), css_class="btn btn-primary"),
-            Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
+            Submit('cancel_button_update', _(u'Cancel'), css_class="btn btn-link"),
         ))
+
 
 class GroupUpdateView(UpdateView):
     model = Group
@@ -143,25 +146,38 @@ class GroupUpdateView(UpdateView):
         return u'%s?status_message=%s' % (reverse('groups'), _(u'Updated group successfully!'))
 
     def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
+        if request.POST.get('cancel_button_update'):
             return HttpResponseRedirect(
                 u'%s?status_message=%s' % (reverse('groups'), _(u'Edding of group has been canceled!')))
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GroupUpdateView, self).dispatch(*args, **kwargs)
     
-    
+@login_required  
 def GroupDeleteView(request, gid):
+
+    
     groups = Group.objects.all() 
     #chek was form posted?
+
     if request.method == 'POST':
+        
+        # if user check button cancel 
+        #import pdb; pdb.set_trace() 
+        if request.POST.get('cancel_button_group') is not None:
+            print('Hello World')
             
+            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), _(u'Deleting of group has been canceled!')))
+        
         # if uder check button delete
         if request.POST.get('delete_button') is not None:
             
-
             group = Group.objects.filter(id = gid)
 
-            try: 
+            try:
                 group.delete()
             except ProtectedError: 
 
@@ -171,9 +187,5 @@ def GroupDeleteView(request, gid):
             
             # redirect in main page groups
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), message))
-
-        # if user check button cancel
-        elif request.POST.get('cancel_button') is not None:
-            return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('groups'), _(u'Deleting of group has been canceled!')))
 
     return render(request, 'groups/groups_delete.html', {'groups': groups, 'gid':gid})

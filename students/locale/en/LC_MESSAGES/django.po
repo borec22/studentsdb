@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-15 17:38+0000\n"
+"POT-Creation-Date: 2020-03-20 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: apps.py:7
+msgid "Students Database"
+msgstr ""
+
 #: models/exams_model.py:12
 msgid "Exam"
 msgstr ""
 
-#: models/exams_model.py:13 templates/exams/exam_list.html:33
-#: templates/students/base.html:53
+#: models/exams_model.py:13 templates/exams/exam_list.html:11
+#: templates/students/base.html:94
 msgid "Exams"
 msgstr ""
 
-#: models/exams_model.py:18 templates/exams/exam_list.html:51
-#: views/views_exam.py:46 views/views_exam.py:136
+#: models/exams_model.py:18 templates/exams/exam_list.html:29
+#: views/views_exam.py:48 views/views_exam.py:147
 msgid "Subject"
 msgstr ""
 
@@ -35,30 +39,30 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: models/exams_model.py:30 templates/exams/exam_list.html:56
-#: views/views_exam.py:57 views/views_exam.py:147
+#: models/exams_model.py:30 templates/exams/exam_list.html:34
+#: views/views_exam.py:59 views/views_exam.py:158
 msgid "Teacher"
 msgstr ""
 
-#: models/exams_model.py:36 views/views_exam.py:62 views/views_exam.py:152
+#: models/exams_model.py:36 views/views_exam.py:64 views/views_exam.py:163
 msgid "Take of exam"
 msgstr ""
 
 #: models/groups_model.py:12 models/students_model.py:57
-#: templates/exams/exam_list.html:76
+#: templates/exams/exam_list.html:54 templates/students/base.html:46
 msgid "Group"
 msgstr ""
 
-#: models/groups_model.py:13 templates/groups/list_group.html:33
-#: templates/students/base.html:52
+#: models/groups_model.py:13 templates/groups/list_group.html:11
+#: templates/students/base.html:93
 msgid "Groups"
 msgstr ""
 
-#: models/groups_model.py:18 templates/groups/list_group.html:51
+#: models/groups_model.py:18 templates/groups/list_group.html:29
 msgid "Title"
 msgstr ""
 
-#: models/groups_model.py:25 templates/groups/list_group.html:55
+#: models/groups_model.py:25 templates/groups/list_group.html:33
 msgid "Leader"
 msgstr ""
 
@@ -66,16 +70,16 @@ msgstr ""
 msgid "Extra notes"
 msgstr ""
 
-#: models/students_model.py:10 templates/journal/journal.html:79
+#: models/students_model.py:10 templates/journal/journal.html:56
 msgid "Student"
 msgstr ""
 
-#: models/students_model.py:11 templates/students/base.html:50
+#: models/students_model.py:11 templates/students/base.html:91
 #: templates/students/students_list.html:6
 msgid "Students"
 msgstr ""
 
-#: models/students_model.py:16 templates/students/students_list.html:61
+#: models/students_model.py:16 templates/students/students_list.html:38
 msgid "First Name"
 msgstr ""
 
@@ -92,7 +96,7 @@ msgid "Birthday"
 msgstr ""
 
 #: models/students_model.py:40 templates/students/students_add.html:86
-#: templates/students/students_list.html:54
+#: templates/students/students_list.html:31
 msgid "Photo"
 msgstr ""
 
@@ -108,22 +112,7 @@ msgstr ""
 msgid "Communication With Administrator"
 msgstr ""
 
-#: templates/contact_admin/form.html:15 templates/exams/exam_list.html:10
-#: templates/exams/exam_list.html.py:142 templates/exams/exams_add.html:13
-#: templates/exams/exams_delete.html:13 templates/exams/exams_edit.html:13
-#: templates/groups/groups_add.html:12 templates/groups/groups_delete.html:13
-#: templates/groups/groups_edit.html:13 templates/groups/list_group.html:10
-#: templates/groups/list_group.html:120 templates/journal/journal.html:15
-#: templates/students/base.html:11 templates/students/base.html.py:92
-#: templates/students/student_config_delete.html:16
-#: templates/students/students_add.html:12
-#: templates/students/students_edit.html:16
-#: templates/students/students_list.html:12
-#: templates/students/students_list.html:132
-msgid "Students Accounting Service"
-msgstr ""
-
-#: templates/contact_admin/form.html:25 templates/groups/groups_add.html:25
+#: templates/contact_admin/form.html:16 templates/groups/groups_add.html:25
 #: templates/groups/groups_edit.html:26 templates/students/students_add.html:24
 #: templates/students/students_edit.html:25
 msgid "Please, edit next errors."
@@ -133,43 +122,50 @@ msgstr ""
 msgid "List Of Groups"
 msgstr ""
 
-#: templates/exams/exam_list.html:17 templates/groups/list_group.html:17
-#: templates/journal/journal.html:23 templates/students/students_list.html:20
-msgid "Group:"
-msgstr ""
-
-#: templates/exams/exam_list.html:19 templates/groups/list_group.html:19
-#: templates/journal/journal.html:25 templates/students/students_list.html:22
-msgid "All Groups"
-msgstr ""
-
-#: templates/exams/exam_list.html:37 templates/exams/exams_add.html:7
+#: templates/exams/exam_list.html:15 templates/exams/exams_add.html:7
 #: templates/exams/exams_add.html.py:19
 msgid "Add Exam"
 msgstr ""
 
-#: templates/exams/exam_list.html:55
+#: templates/exams/exam_list.html:33
 msgid "Data And Time"
 msgstr ""
 
-#: templates/exams/exam_list.html:60
+#: templates/exams/exam_list.html:38
 msgid "Take An Exam"
 msgstr ""
 
-#: templates/exams/exam_list.html:61 templates/exams/exam_list.html.py:93
-#: templates/groups/list_group.html:56 templates/students/students_list.html:70
-#: templates/students/students_list.html:96
+#: templates/exams/exam_list.html:39 templates/exams/exam_list.html.py:71
+#: templates/groups/list_group.html:34 templates/students/students_list.html:47
+#: templates/students/students_list.html:73
 msgid "Actions"
 msgstr ""
 
-#: templates/exams/exam_list.html:99 templates/groups/list_group.html:76
-#: templates/journal/journal.html:106 templates/students/students_list.html:105
+#: templates/exams/exam_list.html:77 templates/groups/list_group.html:54
+#: templates/journal/journal.html:83 templates/students/students_list.html:82
 msgid "Edit"
 msgstr ""
 
-#: templates/exams/exam_list.html:102 templates/groups/list_group.html:79
-#: templates/students/students_list.html:108
+#: templates/exams/exam_list.html:80 templates/groups/list_group.html:57
+#: templates/students/students_list.html:85
 msgid "Delete"
+msgstr ""
+
+#: templates/exams/exam_list.html:92
+msgid "While there are not exams in database."
+msgstr ""
+
+#: templates/exams/exam_list.html:120 templates/exams/exams_add.html:13
+#: templates/exams/exams_delete.html:13 templates/exams/exams_edit.html:13
+#: templates/groups/groups_add.html:12 templates/groups/groups_delete.html:13
+#: templates/groups/groups_edit.html:13 templates/groups/list_group.html:98
+#: templates/students/base.html:11 templates/students/base.html.py:42
+#: templates/students/base.html:133
+#: templates/students/student_config_delete.html:16
+#: templates/students/students_add.html:12
+#: templates/students/students_edit.html:16
+#: templates/students/students_list.html:109
+msgid "Students Accounting Service"
 msgstr ""
 
 #: templates/exams/exams_add.html:26 templates/exams/exams_delete.html:26
@@ -187,12 +183,12 @@ msgstr ""
 msgid "Do you realy want to delete exam: \"%(object)s\"? "
 msgstr ""
 
-#: templates/exams/exams_delete.html:39 templates/groups/groups_delete.html:43
+#: templates/exams/exams_delete.html:39 templates/groups/groups_delete.html:45
 #: templates/students/student_config_delete.html:39
 msgid "Yes"
 msgstr ""
 
-#: templates/exams/exams_delete.html:40 templates/groups/groups_delete.html:44
+#: templates/exams/exams_delete.html:40 templates/groups/groups_delete.html:46
 msgid "No"
 msgstr ""
 
@@ -200,7 +196,7 @@ msgstr ""
 msgid "Edit Exam"
 msgstr ""
 
-#: templates/groups/groups_add.html:18 templates/groups/list_group.html:37
+#: templates/groups/groups_add.html:18 templates/groups/list_group.html:15
 msgid "Add Group"
 msgstr ""
 
@@ -229,7 +225,8 @@ msgid "Notes..."
 msgstr ""
 
 #: templates/groups/groups_add.html:76 templates/students/students_add.html:137
-#: views/views_exam.py:99 views/views_groups.py:133 views/views_students.py:179
+#: views/views_exam.py:101 views/views_groups.py:135
+#: views/views_students.py:182
 msgid "Cancel"
 msgstr ""
 
@@ -246,15 +243,15 @@ msgstr ""
 msgid "Edit Group"
 msgstr ""
 
-#: templates/groups/list_group.html:65
+#: templates/groups/list_group.html:43
 msgid "There are not"
 msgstr ""
 
-#: templates/groups/list_group.html:70
+#: templates/groups/list_group.html:48
 msgid "Action"
 msgstr ""
 
-#: templates/groups/list_group.html:91
+#: templates/groups/list_group.html:69
 msgid "While there are not groups in database."
 msgstr ""
 
@@ -262,27 +259,27 @@ msgstr ""
 msgid "Accounting Journal"
 msgstr ""
 
-#: templates/journal/journal.html:40 templates/journal/journal.html.py:50
+#: templates/journal/journal.html:17 templates/journal/journal.html.py:27
 msgid "add"
 msgstr ""
 
-#: templates/journal/journal.html:40 templates/journal/journal.html.py:50
+#: templates/journal/journal.html:17 templates/journal/journal.html.py:27
 msgid "first."
 msgstr ""
 
-#: templates/journal/journal.html:56
+#: templates/journal/journal.html:33
 msgid "Changes save in journal auto after click on checkbox of table."
 msgstr ""
 
-#: templates/journal/journal.html:57 templates/students/students_list.html:42
+#: templates/journal/journal.html:34 templates/students/students_list.html:19
 msgid "Loading..."
 msgstr ""
 
-#: templates/journal/journal.html:66
+#: templates/journal/journal.html:43
 msgid "Prev month"
 msgstr ""
 
-#: templates/journal/journal.html:70
+#: templates/journal/journal.html:47
 msgid "Next month"
 msgstr ""
 
@@ -290,11 +287,27 @@ msgstr ""
 msgid "App to manage students database"
 msgstr ""
 
-#: templates/students/base.html:51 templates/students/students_list.html:102
+#: templates/students/base.html:48
+msgid "All Students"
+msgstr ""
+
+#: templates/students/base.html:59 templates/students/base.html.py:62
+msgid "Logout"
+msgstr ""
+
+#: templates/students/base.html:70
+msgid "Login"
+msgstr ""
+
+#: templates/students/base.html:71
+msgid "Register"
+msgstr ""
+
+#: templates/students/base.html:92 templates/students/students_list.html:79
 msgid "Journal"
 msgstr ""
 
-#: templates/students/base.html:54
+#: templates/students/base.html:95
 msgid "Contact"
 msgstr ""
 
@@ -310,7 +323,7 @@ msgstr ""
 
 #: templates/students/students_add.html:6
 #: templates/students/students_add.html:17
-#: templates/students/students_list.html:39
+#: templates/students/students_list.html:16
 msgid "Add Student"
 msgstr ""
 
@@ -362,7 +375,7 @@ msgstr ""
 msgid "Choice Group"
 msgstr ""
 
-#: templates/students/students_add.html:134 views/views_exam.py:188
+#: templates/students/students_add.html:134 views/views_exam.py:199
 msgid "Add"
 msgstr ""
 
@@ -371,16 +384,20 @@ msgstr ""
 msgid "Edit Student"
 msgstr ""
 
-#: templates/students/students_list.html:31
+#: templates/students/students_list.html:8
 msgid "Students List"
 msgstr ""
 
-#: templates/students/students_list.html:56
+#: templates/students/students_list.html:33
 msgid "Last name"
 msgstr ""
 
-#: templates/students/students_list.html:66
+#: templates/students/students_list.html:43
 msgid "Ticket #"
+msgstr ""
+
+#: util.py:24
+msgid "uk"
 msgstr ""
 
 #: views/contact_admin.py:19
@@ -403,152 +420,153 @@ msgstr ""
 msgid "An error occured during email transfer. Please, try again later."
 msgstr ""
 
-#: views/views_exam.py:48 views/views_exam.py:138
+#: views/views_exam.py:50 views/views_exam.py:149
 msgid "Enter name of subject"
 msgstr ""
 
-#: views/views_exam.py:50 views/views_exam.py:140
+#: views/views_exam.py:52 views/views_exam.py:151
 msgid "Data and time"
 msgstr ""
 
-#: views/views_exam.py:59 views/views_exam.py:149
+#: views/views_exam.py:61 views/views_exam.py:160
 msgid "Enter last name/first name/middle name of teacher"
 msgstr ""
 
-#: views/views_exam.py:98 views/views_groups.py:132 views/views_students.py:178
+#: views/views_exam.py:100 views/views_groups.py:134
+#: views/views_students.py:181
 msgid "Save"
 msgstr ""
 
-#: views/views_exam.py:108
+#: views/views_exam.py:110
 msgid "Updated exam successfully"
 msgstr ""
 
-#: views/views_exam.py:112
+#: views/views_exam.py:114
 msgid "Edding of exam has been canceled!"
 msgstr ""
 
-#: views/views_exam.py:124
+#: views/views_exam.py:131
 msgid "Delete exam successfully!"
 msgstr ""
 
-#: views/views_exam.py:128
+#: views/views_exam.py:135
 msgid "Deleting of exam has been canceled!"
 msgstr ""
 
-#: views/views_exam.py:189
+#: views/views_exam.py:200
 msgid "Сancel"
 msgstr ""
 
-#: views/views_exam.py:198
+#: views/views_exam.py:209
 msgid "Exam added successfully!"
 msgstr ""
 
-#: views/views_exam.py:202
+#: views/views_exam.py:213
 msgid "Adding of exam has been canceled!"
 msgstr ""
 
-#: views/views_groups.py:56
+#: views/views_groups.py:58
 msgid "Title of group is required"
 msgstr ""
 
-#: views/views_groups.py:60
+#: views/views_groups.py:62
 msgid "This title of group alredy exist."
 msgstr ""
 
-#: views/views_groups.py:65
+#: views/views_groups.py:67
 msgid "Choice leader is required"
 msgstr ""
 
-#: views/views_groups.py:70
+#: views/views_groups.py:72
 msgid "This student is leader another group!"
 msgstr ""
 
-#: views/views_groups.py:83
+#: views/views_groups.py:85
 #, python-format
 msgid "Added group %s successfully!"
 msgstr ""
 
-#: views/views_groups.py:92
+#: views/views_groups.py:94
 msgid "Adding group has been canceld!"
 msgstr ""
 
-#: views/views_groups.py:143
+#: views/views_groups.py:146
 msgid "Updated group successfully!"
 msgstr ""
 
-#: views/views_groups.py:148
+#: views/views_groups.py:151
 msgid "Edding of group has been canceled!"
 msgstr ""
 
-#: views/views_groups.py:168
-msgid "Delete group imposible because it has another students!"
-msgstr ""
-
-#: views/views_groups.py:170
-msgid "Deleted group successfully!"
-msgstr ""
-
-#: views/views_groups.py:177
+#: views/views_groups.py:173
 msgid "Deleting of group has been canceled!"
 msgstr ""
 
-#: views/views_students.py:61
+#: views/views_groups.py:184
+msgid "Delete group imposible because it has another students!"
+msgstr ""
+
+#: views/views_groups.py:186
+msgid "Deleted group successfully!"
+msgstr ""
+
+#: views/views_students.py:65
 msgid "First Name field is required"
 msgstr ""
 
-#: views/views_students.py:67
+#: views/views_students.py:71
 msgid "Last Name fieild is required"
 msgstr ""
 
-#: views/views_students.py:73
+#: views/views_students.py:77
 msgid "Birthday fieild is required"
 msgstr ""
 
-#: views/views_students.py:78
+#: views/views_students.py:82
 msgid "Enter correct formar of data (examp. 1984-12-30)"
 msgstr ""
 
-#: views/views_students.py:85
+#: views/views_students.py:89
 msgid "Ticket Number is required"
 msgstr ""
 
-#: views/views_students.py:91
+#: views/views_students.py:95
 msgid "Choice group for student"
 msgstr ""
 
-#: views/views_students.py:95
+#: views/views_students.py:99
 msgid "Choice correct group"
 msgstr ""
 
-#: views/views_students.py:102
+#: views/views_students.py:106
 msgid "Size of photo must be not more than 2Mb"
 msgstr ""
 
-#: views/views_students.py:104
+#: views/views_students.py:108
 msgid "Type of photo that you choiced is not an image"
 msgstr ""
 
-#: views/views_students.py:118
+#: views/views_students.py:122
 #, python-format
 msgid "Student %(first_name)s %(last_name)s added successfully!"
 msgstr ""
 
-#: views/views_students.py:125
+#: views/views_students.py:129
 msgid "Adding of student has been cancelled!"
 msgstr ""
 
-#: views/views_students.py:150
+#: views/views_students.py:154
 msgid "Student is a leader another group."
 msgstr ""
 
-#: views/views_students.py:190
+#: views/views_students.py:193
 msgid "Student updated successfully!"
 msgstr ""
 
-#: views/views_students.py:195
+#: views/views_students.py:198
 msgid "Editing of student has been cancelled!"
 msgstr ""
 
-#: views/views_students.py:204
+#: views/views_students.py:216
 msgid "Student deleted successfully!"
 msgstr ""

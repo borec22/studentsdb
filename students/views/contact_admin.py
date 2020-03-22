@@ -7,6 +7,8 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import permission_required
 
 from django.views.generic.edit import FormView
 from studentsdb.settings import ADMIN_EMAIL
@@ -20,6 +22,7 @@ class ContactForm(forms.Form):
 
     subject = forms.CharField(
         label=_(u"Email Subject"),
+        widget = forms.TextInput,
         max_length=128)
 
     message = forms.CharField(
@@ -49,6 +52,7 @@ class ContactForm(forms.Form):
         self.helper.add_input(Submit('second_button', u'Надіслати'))
 
 #contact_admin by class FormView
+
 class ContactAdminView(FormView):
     template_name = 'contact_admin/form.html'
     form_class = ContactForm
@@ -74,3 +78,6 @@ class ContactAdminView(FormView):
             logger.exception(message)
 
         return super(ContactAdminView, self).form_valid(form)
+    @method_decorator(permission_required('auth.add_user'))
+    def dispatch(self, *args, **kwargs):
+        return super(ContactAdminView, self).dispatch(*args, **kwargs)

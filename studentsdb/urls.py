@@ -21,6 +21,7 @@ from students.views.views_exam import *
 from students.views.contact_admin import *
 from students.views.django_contact_admin import *
 
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.views.i18n import javascript_catalog
@@ -38,25 +39,25 @@ js_info_dict = {
 urlpatterns = [
     # Students urls
     url(r'^$', students_list, name='home'),
-    url(r'^students/add/$', students_add, name='students_add'),
-    url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
+    url(r'^students/add/$', permission_required('students.add_student')(students_add), name='students_add'),
+    url(r'^students/(?P<pk>\d+)/edit/$', permission_required('students.change_student')(StudentUpdateView.as_view()), name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
      
     #Groups urls
-    url(r'^groups/$', groups_list, name='groups'),
-    url(r'^groups/add/$', groups_add, name='groups_add'),  
-    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$', GroupDeleteView, name='groups_delete'),
+    url(r'^groups/$', login_required(groups_list), name='groups'),
+    url(r'^groups/add/$', login_required(groups_add), name='groups_add'),  
+    url(r'^groups/(?P<pk>\d+)/edit/$', login_required(GroupUpdateView.as_view()), name='groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/delete/$', login_required(GroupDeleteView), name='groups_delete'),
     
 
     #Journal urls
     url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
 
     #Exam urls
-    url(r'^exam/$', exam_list, name='exam'),
-    url(r'^exam/(?P<pk>\d+)/edit_exam/$', exam_edit.as_view(), name='exam_edit'),
-    url(r'^exam/(?P<pk>\d+)/delete_exam/$', exam_delete.as_view(), name='exam_delete'),
-    url(r'^exam/add/$', add_exam.as_view(), name='add_exam'),
+    url(r'^exam/$', login_required(exam_list), name='exam'),
+    url(r'^exam/(?P<pk>\d+)/edit_exam/$', login_required(exam_edit.as_view()), name='exam_edit'),
+    url(r'^exam/(?P<pk>\d+)/delete_exam/$', login_required(exam_delete.as_view()), name='exam_delete'),
+    url(r'^exam/add/$', login_required(add_exam.as_view()), name='add_exam'),
 
     # Contact Admin Form
     url(r'^contact-admin/$', ContactAdminView.as_view(), name='contact_admin'),

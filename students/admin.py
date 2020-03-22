@@ -56,8 +56,8 @@ class GroupAdmin(admin.ModelAdmin):
 		return reverse('groups_edit', kwargs={'gid': obj.id})
 
 class ExamAdmin(admin.ModelAdmin):
-	list_display = ['subject', 'data_and_time', 'teacher']
-	list_display_links = ['subject', 'data_and_time']
+	list_display = ['subject', 'data', 'teacher']
+	list_display_links = ['subject', 'data']
 	ordering = ['subject']
 	list_filter = ['subject']
 	lisp_per_page = 5

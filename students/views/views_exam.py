@@ -6,6 +6,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import Field
@@ -47,10 +49,10 @@ class EditExamForm(forms.ModelForm):
                  widget = forms.TextInput
                  (attrs={'placeholder': _(u'Enter name of subject')}))
 
-    data_and_time = forms.DateTimeField(label = _(u'Data and time'),
-                 input_formats=["%d/%m/%Y %H:%M:%S"],
-                 widget = forms.DateTimeInput( 
-                    attrs={'placeholder':"DD/MM/YYYY HH:MM:SS"}
+    data = forms.DateField(label = _(u'Data'),
+                 input_formats=["%Y-%m-%d"],
+                 widget = forms.DateInput( 
+                    attrs={'placeholder':"DD-MM-YYYY"}
                  #attrs={'placehilder': 'Дата та час'})
                  ))
     teacher = forms.CharField(max_length=100,
@@ -88,15 +90,15 @@ class EditExamForm(forms.ModelForm):
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-6'
         self.helper.attrs = {'novalidate': ''}
-        self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
+        self.helper.layout[1] = AppendedText('data', '<label for="id_data_and_time" \
             style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
             aria-hidden="true"> </span> </label>', active=True)
 
         
         #add buttons
         self.helper.layout.fields.append(FormActions(
-            Submit('save_button', _(u'Save'), css_class="btn btn-primary"),
-            Submit('cancel_button', _(u'Cancel'), css_class="btn btn-link"),
+            Submit('save_button_exam', _(u'Save'), css_class="btn btn-primary"),
+            Submit('cancel_button_exam_edit', _(u'Cancel'), css_class="btn btn-link"),
         ))
 
 class exam_edit(UpdateView):
@@ -105,16 +107,19 @@ class exam_edit(UpdateView):
     template_name = 'exams/exams_edit.html'
 
     def get_success_url(self):
-        return u'%s?status_message=%' % (reverse('exam'), _(u'Updated exam successfully'))
+        return u'%s?status_message=%s' % (reverse('exam'), _(u'Updated exam successfully'))
 
     def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
+        if request.POST.get('cancel_button_exam_edit'):
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Edding of exam has been canceled!')))
         else:
             return super(exam_edit, self).post(request, *args, **kwargs)
 
-    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(exam_edit, self).dispatch(*args, **kwargs)
 
+    
 class exam_delete(DeleteView):
     model = Exam
     #form_class = DeleteExamForm
@@ -124,10 +129,16 @@ class exam_delete(DeleteView):
         return u'%s?status_message=%s' % (reverse('exam'), _(u'Delete exam successfully!'))
 
     def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button') is not None:
+        #import pdb; pdb.set_trace()
+        if request.POST.get('cancel_button_exam_delete') is not None:
+
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Deleting of exam has been canceled!')))
         else:
             return super(exam_delete, self).post(request, *args, **kwargs)
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(exam_delete, self).dispatch(*args, **kwargs)
 
 
 class AddExamForm(forms.ModelForm):
@@ -137,11 +148,10 @@ class AddExamForm(forms.ModelForm):
                  widget = forms.TextInput
                  (attrs={'placeholder': _(u'Enter name of subject')}))
 
-    data_and_time = forms.DateTimeField(label = _(u'Data and time'),
-                 input_formats=["%d/%m/%Y %H:%M:%S"],
-                 widget = forms.DateTimeInput( 
-                    attrs={'placeholder':"DD/MM/YYYY HH:MM:SS"}
-                 #attrs={'placehilder': 'Дата та час'})
+    data = forms.DateField(label = _(u'Data'),
+                 input_formats=["%Y-%m-%d"],
+                 widget = forms.DateInput( 
+                    attrs={'placeholder':"DD-MM-YYYY"}
                  ))
     teacher = forms.CharField(max_length=100,
                  label = _(u'Teacher'),
@@ -178,7 +188,7 @@ class AddExamForm(forms.ModelForm):
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-5'
         self.helper.attrs = {'novalidate': ''}
-        self.helper.layout[1] = AppendedText('data_and_time', '<label for="id_data_and_time" \
+        self.helper.layout[1] = AppendedText('data', '<label for="id_data_and_time" \
             style="height: 10px"> <span class="glyphicon glyphicon-calendar" \
             aria-hidden="true"> </span> </label>', active=True)
 
@@ -186,7 +196,7 @@ class AddExamForm(forms.ModelForm):
         #add buttons
         self.helper.layout.fields.append(FormActions(
             Submit('add_button', _(u'Add'), css_class="btn btn-primary"),
-            Submit('cancel_button', _(u'Сancel'), css_class="btn btn-link"),
+            Submit('cancel_button_add_exam', _(u'Сancel'), css_class="btn btn-link"),
         ))
 
 class add_exam(CreateView):
@@ -195,13 +205,18 @@ class add_exam(CreateView):
     template_name = 'exams/exams_add.html'
 
     def get_success_url(self):
-        return u'%s?status_message=%' % (reverse('exam'), _(u'Exam added successfully!'))
+        return u'%s?status_message=%s' % (reverse('exam'), _(u'Exam added successfully!'))
 
     def post(self, request, *args, **kwargs):
-        if request.POST.get('cancel_button'):
+        #import pdb; pdb.set_trace()
+        if request.POST.get('cancel_button_add_exam') is not None:
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('exam'), _(u'Adding of exam has been canceled!')))
         else:
             return super(add_exam, self).post(request, *args, **kwargs)
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(add_exam, self).dispatch(*args, **kwargs)
 
 
 

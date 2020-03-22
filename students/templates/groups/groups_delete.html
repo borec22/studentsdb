@@ -36,12 +36,14 @@
 	{% for group in groups %}
 
 	{% if gid|add:0 == group.id %}
-    <form method="POST" action="{% url 'groups_delete' group.id %}" >
+    <form method="post" action="{% url 'groups_delete' group.id %}" enctype='multipart/form-data' >
     	{% csrf_token %}
     	<p> {% blocktrans with group=group.title %}Do you really want to delete group: "{{ group }}"?{% endblocktrans %}</p>
+
     	<div id="buttons_groups_delete">
-    	  <button name="delete_button" class="btn btn-danger">{% trans "Yes" %}</button>
-    	  <button name="cancel_button" class="btn btn-danger">{% trans "No" %}</button>
+    	  
+          <input type="submit" name="delete_button" class="btn btn-danger" value="{% trans 'Yes' %}" />
+          <input type="submit" name="cancel_button_group" class="btn btn-danger" value="{% trans 'No' %}" />
     	</div>
     </form>
     {% endif %}
