@@ -1,0 +1,79 @@
+{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% block meta_title %} 
+
+{{ user.get_full_name|default:user.username }} 
+
+{% endblock meta_title %}
+
+{% block title %}
+
+{{ user.get_full_name|default:user.username }} 
+
+<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button"> Редагувати </a>
+
+{% endblock title%}
+
+{% block content %}
+  
+<table class="table table-striped">
+  <tr>
+    <td>{% trans "Photo" %}</td>
+    <td>
+  {% if user.stprofile.photo %}
+    <img height="30" width="30" src="{{ user.stprofile.photo.url }}" class="img-circle"> 
+  {% else %}
+    <img height="30" width="30" src="{% static 'img/default_user.jpeg' %}" class="img-circle">
+  {% endif %}
+    </td>
+  
+  </tr>
+
+  {% if user.email %}
+  <tr>
+    <td>{% trans "Email" %}:</td>
+    <td> {{ user.email }} </td>
+  </tr>
+  {% endif %}
+
+  {% if user.username %}
+  <tr>
+    <td> {% trans "Username" %}: </td>
+    <td> {{ user.username }} </td>
+  </tr>
+  {% endif %}
+  
+  {% if user.stprofile.mobile_phone %}
+  <tr>
+    <td>{% trans "Mobile Phone" %}:</td>
+    <td>{{ user.stprofile.mobile_phone }}</td>
+  </tr>
+  {% endif %}
+
+  {% if user.stprofile.address %}
+  <tr>
+    <td>{% trans "Adress" %}:</td>
+    <td>{{ user.stprofile.address }}</td>
+  </tr>
+  {% endif %}
+
+  {% if user.stprofile.pasport_number %}
+  <tr>
+    <td>{% trans "Pasport Number" %}:</td>
+    <td>{{ user.stprofile.pasport_number }}</td>
+  </tr>
+  {% endif %}
+
+  {% if user.date_joined %}
+  <tr>
+    <td> {% trans "Joined" %}: </td>
+    <td> {{ user.date_joined }} </td>
+  </tr>
+  {% endif %}
+
+</table>
+    
+{% endblock content %}

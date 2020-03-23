@@ -16,10 +16,9 @@ from crispy_forms.bootstrap import Field
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Button, Fieldset
 from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 
-
 from students.models.students_model import Student
 from students.models.groups_model import Group
-from ..util import paginate, get_current_group, DispatchLoginRequired
+from ..util import paginate, get_current_group
 
 
 def students_list(request):

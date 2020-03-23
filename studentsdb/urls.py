@@ -20,6 +20,8 @@ from students.views.views_journal import *
 from students.views.views_exam import *
 from students.views.contact_admin import *
 from students.views.django_contact_admin import *
+from students.views.user_profile import *
+from stud_auth.views import *
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import admin
@@ -63,13 +65,14 @@ urlpatterns = [
     url(r'^contact-admin/$', ContactAdminView.as_view(), name='contact_admin'),
     # Contact admin by help django application django-contact-form
     url(r'^django-contact-admin/$', CustomContactFormView.as_view(), name='django-contact-admin'),
-    url(r'^contact/sent/$',
-        TemplateView.as_view(
-            template_name='contact_admin/django_contact_form_sent.html'
-        ),
-        name='contact_form_sent'),
+    url(r'^contact/sent/$', TemplateView.as_view(
+            template_name='contact_admin/django_contact_form_sent.html'),
+            name='contact_form_sent'),
 
     # User Related urls
+    url(r'^users/profile/$', login_required(TemplateView.as_view(
+        template_name='registration/profile.html')), name='profile'),
+    url(r'^users/profile/(?P<pk>[\d]+)/edit/$', PhotoProfileUpdateViews.as_view(), name='profile_edit'),
     url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, \
                                                name='auth_logout'),
     url('^reset-password/$', auth_views.password_reset, \
