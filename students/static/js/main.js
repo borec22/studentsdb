@@ -202,8 +202,11 @@ function initLangSelector(){
   });
 };
 
-
-
+function profileEditButtonHide(){
+  $('#profile_edit_button').click(function(){
+    $('#profile_edit_button').hide();
+  });
+}
 
 $(document).ready(function(){
   initJournal();
@@ -211,5 +214,5 @@ $(document).ready(function(){
   initDateFields();
   initEditStudentPage();
   initLangSelector();
-
+  profileEditButtonHide();
 });

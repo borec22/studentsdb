@@ -48,9 +48,21 @@ INSTALLED_APPS = [
     'crispy_forms',
     'contact_form',
     'registration',
+    'social.apps.django_app.default',
     'students',
     'stud_auth',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # for twitter authentication
+    'social.backends.google.GoogleOAuth2',
+    # for twitter authentication
+    'social.backends.twitter.TwitterOAuth',
+    # for facebook authentication
+    'social.backends.facebook.FacebookOAuth2',
+    # default django auth backends
+    'django.contrib.auth.backends.ModelBackend',
+    )
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,6 +87,11 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+
+                # setting of template context processors for social auth
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
+                
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'studentsdb.context_processors.groups_processor',
@@ -86,7 +103,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
+SOCIAL_AUTH_FACEBOOK_KEY = '2722702724491610'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f2a9118bb2718a7c8e7f363295641d3d'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -139,7 +157,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/staticvvv/'
+STATIC_URL = '/staticoo/'
 
 PORTAL_URL = 'http://localhost:8000'
 

@@ -66,6 +66,9 @@
 
           <!-- User's toolbar for anonymous users -->
           <div class="col-xs-6" id="user-toolbar">
+          	<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" id="via_facebook" class="fb btn">
+          		<i class="fa fa-facebook fa-fw" id="i-fb"></i>
+          	</a> |
           	<a href="{% url 'users:auth_login' %}" class="modal-form-link">{% trans "Login" %}</a> |
           	<a href="{% url 'users:registration_register' %}" class="modal-form-link">{% trans "Register" %}</a>
           </div>

@@ -83,6 +83,9 @@ urlpatterns = [
                                           name='registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls',
                                                namespace='users')),
+
+    # Social Auth Related urls
+    url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
     
     url(r'^admin/', admin.site.urls),
     url(r'^jsi18n\.js$', javascript_catalog , js_info_dict, name='javascript-catalog'),

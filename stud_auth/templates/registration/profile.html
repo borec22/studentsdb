@@ -13,7 +13,9 @@
 
 {{ user.get_full_name|default:user.username }} 
 
-<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button"> Редагувати </a>
+{% if perms.stud_auth %}
+<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button" id="profile_edit_button"> Редагувати </a>
+{% endif %}
 
 {% endblock title%}
 
