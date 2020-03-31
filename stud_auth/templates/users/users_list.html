@@ -1,0 +1,105 @@
+{% extends 'students/base.html' %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Users" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Users List" %}{% endblock title %}
+
+{% block content %}
+			  
+			  <!-- Start Studenrs Listing -->
+			  <table class="table table-hover table-striped" >
+				{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+			    <thead> 
+				  <tr>
+					 <th> <a href="{% url 'users' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+					 № 
+					 {% if order_by == 'id' and reverse != '1'%}&uarr;
+                     {% elif order_by == 'id' and reverse == '1' %} &darr;
+                     {% endif %}</a></th> 
+					 <th> {% trans "Photo" %} </th>
+					 <th> <a href="{% url 'users' %}?order_by=username{% if order_by == 'username' and reverse != '1' %}&amp;reverse=1{% endif %}"> 
+					 {% trans "Username" %} 
+					 {% if order_by == 'username' and reverse != '1'%}&uarr;
+                     {% elif order_by == 'username' and reverse == '1' %} &darr;
+                     {% endif %} </a> </th>
+					 <th> <a href="{% url 'users' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+						 {% trans "First Name" %}
+						 {% if order_by == 'first_name' and reverse != '1' %} &uarr;
+                     	 {% elif order_by == 'first_name' and reverse == '1' %} &darr;
+					     {% endif %}</a></th>
+					 <th> <a href="{% url 'users' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+						 {% trans "Last Name" %}
+						 {% if order_by == 'last_name' and reverse != '1' %} &uarr;
+                     	 {% elif order_by == 'last_name' and reverse == '1' %} &darr;
+					     {% endif %}</a></th>
+					 <th> {% trans "Email" %} </th>
+					 <th> {% trans "Mobile Phone" %} </th>
+					 <th> {% trans "Adress" %} </th>
+					 <th> {% trans "Joined" %} </th>
+				   </tr>
+				 </thead>
+				  {% endwith %}
+				  <tbody>
+				    
+				    {% for u_ser in users %}  
+				    <tr>
+					  <td> {{ forloop.counter }} </td>
+					  <td> 
+					  {% if u_ser.stprofile.photo %}
+					      <img height="30" width="30" src="{{ u_ser.stprofile.photo.url }}" class="img-circle"> 
+					  {% else %}
+					      <img height="30" width="30" src="{% static 'img/default_user.jpeg' %}" class="img-circle">
+					  
+					  {% endif %}
+					  <td>  {{ u_ser.username }} </td>
+					  <td>  {{ u_ser.first_name }} </td>
+					  <td>  {{ u_ser.last_name }} </td>
+					  <td>  {{ u_ser.email }} </td>
+					  <td>  {{ u_ser.stprofile.mobile_phone }} </td>
+					  <td> {{ u_ser.stprofile.address }} </td>
+					  <td> {{ u_ser.date_joined }} </td>
+					</tr>
+					{% endfor  %}
+							
+				  </tbody>
+			  </table>
+			  
+			  
+			   <!-- Start Studenrs Listing --> 
+			  {% include 'pagination.html' %}
+
+{% endblock content %}
+
+{% block pagination%}
+	{% if users.has_other_pages %}
+	{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+	<nav>
+	    <ul class = "pagination">
+		    <li><a href = "{% url 'users' %}?page=1&amp;order_by={{order_by}}&amp;reverse={{reverse}}">&laquo;</a></li>
+		    {% for p in users.paginator.page_range %}
+			<li {% if users.number == p %} class = "active"{% endif %}> 
+				<a href = "{% url 'users' %}?page={{p}}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">{{p}}</a></li>
+			{% endfor %}
+			<li><a href = "{% url 'users'%}?page={{ users.paginator.num_pages }}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">
+			&raquo;</a>
+			</li>
+		</ul>
+	</nav>
+	{% endwith %}
+	{% endif %}
+{% endblock pagination%}
+
+{% block footer %}
+
+		<!-- Start Footer -->
+		<div class="row" id="footer">
+		  <div class="col-xs-12">
+		   &copy; 2020 {% trans "Students Accounting Service" %}
+		  </div>
+		</div>
+		<!-- End Footer -->
+		
+{% endblock footer %}

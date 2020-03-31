@@ -14,7 +14,7 @@
 {{ user.get_full_name|default:user.username }} 
 
 {% if perms.stud_auth %}
-<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button" id="profile_edit_button"> Редагувати </a>
+<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button" id="profile_edit_button"> {% trans "Edit" %} </a>
 {% endif %}
 
 {% endblock title%}
@@ -37,7 +37,8 @@
   {% if user.email %}
   <tr>
     <td>{% trans "Email" %}:</td>
-    <td> {{ user.email }} </td>
+    <td> {{ user.email }} 
+    </td>
   </tr>
   {% endif %}
 

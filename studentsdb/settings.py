@@ -65,6 +65,7 @@ AUTHENTICATION_BACKENDS = (
     )
 
 MIDDLEWARE_CLASSES = [
+    'studentsdb.middleware.RequestTimeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -103,8 +104,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 SOCIAL_AUTH_FACEBOOK_KEY = '2722702724491610'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'f2a9118bb2718a7c8e7f363295641d3d'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '452554037855-sadkv72l3tufnp369f8pgtajvpgetesg.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'yV_U63eSf5KfOMGtI0JAltH3'
+
+# Google OAuth2 (google-oauth2)
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+# Google+ SignIn (google-plus)
+SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
+'https://www.googleapis.com/auth/plus.login',
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
+SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -157,7 +180,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/staticoo/'
+STATIC_URL = '/static[[[/'
 
 PORTAL_URL = 'http://localhost:8000'
 

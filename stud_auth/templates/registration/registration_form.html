@@ -19,31 +19,31 @@
 	{% csrf_token %}
 	<input type="hidden" name="next" value="{% url 'home' %}" />
 
-	<div class="form-group has-error">
+	<div class="form-group {% if form.errors.username %}has-error{% endif %}">
 		<label for="login">{% trans "Your Username" %}</label>
 		<input type="text" name="username" class="form-control" id="login" value="" />
 		<span class="help-block">{{ form.errors.username.as_text }}</span>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group {% if form.errors.email %}has-error{% endif %}">
 		<label for="email">{% trans "Your Email" %}</label>
 		<input type="text" name="email" class="form-control" id="email" value="" />
 		<span class="help-block">{{ form.errors.email.as_text }}</span>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group {% if form.errors.password1 %}has-error{% endif %}">
 		<label for="password">{% trans "Your Password" %}</label>
 		<input type="password" name="password1" class="form-control" id="password" value="" />
 		<span class="help-block">{{ form.errors.password1.as_text }}</span>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group {% if form.errors.password2 %}has-error{% endif %}">
 		<label for="password-confirm">{% trans "Confirm Password" %}</label>
 		<input type="password" name="password2" class="form-control" id="password-confirm" value="" />
 		<span class="help-block">{{ form.errors.password2.as_text }}</span>
 	</div>
 
-	<button type="submit" class="btn btn-primary">{% trans "Register" %}</button>
+	<button type="submit" class="btn btn-primary" style="width: 320px;">{% trans "Register" %}</button>
 	
 </form>
 

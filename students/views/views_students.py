@@ -35,8 +35,6 @@ def students_list(request):
 	    students = students.order_by(order_by)
 	    if request.GET.get('reverse', '') == '1':
 	        students = students.reverse()
-	#else:
-	#	students = students.order_by('last_name')
 	
 	#aply pagination, 3 students per page
     context = paginate(students, 3, request, {}, var_name="students")

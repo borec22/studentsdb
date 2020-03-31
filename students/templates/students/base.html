@@ -21,10 +21,12 @@
     <link rel="stylesheet"
         href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/ae7abcdfb1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" 
 			 href="{{ PORTAL_URL }} {% static 'css/main.css' %} ">
 	<link rel="stylesheet" 
 			 href="{{ PORTAL_URL }} {% static 'stud_auth/static/css/main.css' %} ">
+	<!--<style type="text/css"> .col-xs-4, .col-xs-5, .col-xs-2, .col-xs-3, .col-xs-6, .col-xs-1 {border: 1px solid red;} </style>-->
 			 
     	 
 	{% block extra_css %}{% endblock extra_css %}
@@ -35,14 +37,14 @@
     
 	<!-- Start Container -->
 	<div class="container">
-	
+	     
 	   <!-- Start Header -->
-	    <div class="row" id="header"> 
-          <div class="col-xs-6">
-            <h1>{% trans "Students Accounting Service" %}</h1>
+	    <div class="row" id="header">
+	      {% if user.is_authenticated %}
+          <div class="col-xs-4">
+            <h3>{% trans "Students Accounting Service" %}</h3>
           </div>
-          {% if user.is_authenticated %}
-          <div class="col-xs-4" id="group-selector">
+          <div class="col-xs-3" id="group-selector">
             <strong>{% trans "Group" %}</strong>
             <select>
               <option value="">{% trans "All Students" %}</option>
@@ -53,35 +55,59 @@
           </div>
           
           <!-- User's toolbar for authentification users -->
-          <div class="col-xs-2" id="user-toolbar"> 
-          	
-          	<a href="{% url 'profile' %}">{{ user.get_full_name|default:user.username }}</a> 
-            
-          	|
-          	<a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
-          	
-          </div>
+          <div class="col-xs-4" id="user-toolbar">
+		   <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <div class="navbar-nav">
+		      <div class="nav-item dropdown">
+		        <a style="margin-right: 30px" class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		            <i class="fa fa-user-circle-o"> </i> {{ user.username }} <i class="fa fa-caret-down"> </i>
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="select-options-account">
+		          <a class="dropdown-item" href="{% url 'profile' %}">{% trans "My Account" %}</a> <br>
+		          <a class="dropdown-item modal-form-link" href="{% url 'password_change' %}">{% trans "Change Password" %}</a> <br>
+		          <a class="dropdown-item" href="{% url 'users:auth_logout' %}" id="exit-account">{% trans "Exit" %}</a>
+		        </div>
+		      </div>
+		    </div>
+		   </div>
+		  </div>
+
+		  <div class="col-xs-1" id="exit-enter-register-menu" style="text-align: left;">
+		  	<a href="{% url 'users:auth_logout' %}"> <i class="fas fa-sign-out-alt"> </i> {% trans 'Exit' %}</a>
+		  </div>
+	
 
           {% else %}
 
           <!-- User's toolbar for anonymous users -->
-          <div class="col-xs-6" id="user-toolbar">
-          	<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" id="via_facebook" class="fb btn">
+          <div class="col-xs-7">
+            <h3>{% trans "Students Accounting Service" %}</h3>
+          </div>
+          <div class="col-xs-3" id="exit-enter-register-menu" style="text-align: right;">
+
+          	  <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" id="via_google" class="google btn" style="margin-left: 10px; margin-bottom: 5px;">
+          		<i class="fa fa-google fa-fw" id="i-goole"></i>
+          	  </a>
+
+          	  <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" id="via_facebook" class="fb btn" style="margin-left: 10px; margin-bottom: 5px;">
           		<i class="fa fa-facebook fa-fw" id="i-fb"></i>
-          	</a> |
-          	<a href="{% url 'users:auth_login' %}" class="modal-form-link">{% trans "Login" %}</a> |
-          	<a href="{% url 'users:registration_register' %}" class="modal-form-link">{% trans "Register" %}</a>
+          	  </a>
+              
+		  	  <a href="{% url 'users:auth_login' %}" class="modal-form-link"> <i class="fas fa-sign-out-alt" style="margin-left: 10px; margin-bottom: 6px;"></i> {% trans "Login" %} </a>
+		  </div> 
+		  <div class="col-xs-2" id="exit-enter-register-menu" style="text-align: center; margin-top: 20px;">
+          	  <a href="{% url 'users:registration_register' %}" class="modal-form-link"> <i class="fa fa-user-circle-o"> </i> {% trans 'Sign Up' %}</a>
           </div>
           {% endif %}
 
           <!-- field select for choise or chainge language -->
-          <div class="col-xs-2" id="lang-selector">
+          <!-- <div class="col-xs-1" id="lang-selector">
             <select>
               <option value="">{{LANGUAGE}}</option>
               <option value="uk">uk</option>
               <option value="en">en</option> 
             </select>
-          </div>
+          </div> -->
         </div>
 		  
 		<!-- End Header -->
@@ -95,12 +121,13 @@
                  <li role="presentation" {% if '/journal' in request.path %} class="active"{%endif%}><a href="{% url 'journal' %}">{% trans "Journal" %}</a></li>
                  <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}> <a href="{% url 'groups' %}">{% trans "Groups" %}</a></li>
                  <li role="presentation" {% if '/exam' in request.path %} class="active" {% endif %}> <a href="{% url 'exam' %}">{% trans "Exams" %}</a> </li>
-                 {% endif %}
 
                  {% if perms.auth.add_user %}
                  <li role="presentation" {% if '/contact-admin' in request.path %} class="active" {% endif %}> <a href="{% url 'contact_admin' %}"> {% trans "Contact" %} </a> </li>
                  {% endif %}
 
+                 <li role="presentation" {% if '/all_users' in request.path %} class="active" {% endif %}> <a href="{% url 'users' %}">{% trans "Users" %}</a> </li>
+                 {% endif %}
             </ul>
 		  </div>
 		</div>
@@ -121,8 +148,8 @@
 			{% endblock %}
 
 			<h2> {% block title %} {% endblock title %} </h2>
+			
 			{% block content %}
-            
 			{% endblock content %}
 
 			  

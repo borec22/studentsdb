@@ -1,57 +1,51 @@
-{% extends "students/base.html" %}
+{% extends 'students/base.html' %}
+
 {% load i18n %}
-{% load crispy_forms_tags %}
+{% load static from staticfiles %}
 
-{% block title %}
+{% block meta_title %}{% trans "Login Form" %}{% endblock meta_title %}
 
-  {% trans "Login Form" %}
-
-{% endblock %}
+{% block title %}{% trans "Login Form" %}{% endblock title %}
 
 {% block status_message %}
 {% if form.errors %}
-  <div class="alert alert-warning" role="alert">
-    {% if form.non_field_errors %}
-      {{ form.non_field_errors.as_text }}
-    {% else %}
-      {% trans "Please, correct the following errors." %}
-    {% endif %}
-  </div>
+<div class="alert alert-warning" role="alert"> {% trans  "Please, correct the following errors." %} {{ form.non_field_errors }}</div>
 {% endif %}
 {% endblock %}
 
 {% block content %}
-  {% crispy form %}
-<p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
-<p>{% trans "Not a member?" %} <a href="{% url 'users:registration_register' %}">{% trans "Register" %}</a>.</p>
-    
-{% endblock %}
+<form action="{% url 'users:auth_login' %}" method="post">
 
+	{% csrf_token %}
+	<input type="hidden" name="next" value="{% url 'home' %}" />
 
-{% comment %}
-**registration/login.html**
+	<div class="form-group">
+		<label for="login">{% trans "Your Username" %}</label>
+		<input type="text" name="username" class="form-control" id="login" value="" />
+	</div>
+	<span class="help-block"> {{ form.errors.username.as_text }} </span>
 
-It's your responsibility to provide the login form in a template called
-registration/login.html by default. This template gets passed four
-template context variables:
+	<div class="form-group">
+		<label for="password">{% trans "Your Password" %}</label>
+		<input type="password" name="password" class="form-control" id="password" value="" />
+	</div>
+	<span class="help-block"> {{ form.errors.password.as_text }}</span>
 
-``form``
-    A Form object representing the login form. See the forms
-    documentation for more on Form objects.
+	<button type="submit" class="btn btn-primary" style="width: 320px;">{% trans 'Login' %}</button>
+	<p></p>
+	<p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>
+</form>
 
-``next``
-    The URL to redirect to after successful login. This may contain a
-    query string, too.
+{% endblock content %}
 
-``site``
-    The current Site, according to the SITE_ID setting. If you don't
-    have the site framework installed, this will be set to an instance
-    of RequestSite, which derives the site name and domain from the
-    current HttpRequest.
+{% block footer %}
 
-``site_name``
-    An alias for site.name. If you don't have the site framework
-    installed, this will be set to the value of
-    request.META['SERVER_NAME']. For more on sites, see The
-    "sites" framework.
-{% endcomment %}
+		<!-- Start Footer -->
+		<div class="row" id="footer">
+		  <div class="col-xs-12">
+		   &copy; 2020 {% trans "Students Accounting Service" %}
+		  </div>
+		</div>
+		<!-- End Footer -->
+		
+{% endblock footer %}
