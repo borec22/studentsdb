@@ -26,7 +26,7 @@
 			 href="{{ PORTAL_URL }} {% static 'css/main.css' %} ">
 	<link rel="stylesheet" 
 			 href="{{ PORTAL_URL }} {% static 'stud_auth/static/css/main.css' %} ">
-	<!--<style type="text/css"> .col-xs-4, .col-xs-5, .col-xs-2, .col-xs-3, .col-xs-6, .col-xs-1 {border: 1px solid red;} </style>-->
+	<!--<style type="text/css"> .col-xs-4, .col-xs-5, .col-xs-2, .col-xs-3, .col-xs-8, .col-xs-1 {border: 1px solid red;} </style>-->
 			 
     	 
 	{% block extra_css %}{% endblock extra_css %}
@@ -96,7 +96,7 @@
 		  	  <a href="{% url 'users:auth_login' %}" class="modal-form-link"> <i class="fas fa-sign-out-alt" style="margin-left: 10px; margin-bottom: 6px;"></i> {% trans "Login" %} </a>
 		  </div> 
 		  <div class="col-xs-2" id="exit-enter-register-menu" style="text-align: center; margin-top: 20px;">
-          	  <a href="{% url 'users:registration_register' %}" class="modal-form-link"> <i class="fa fa-user-circle-o"> </i> {% trans 'Sign Up' %}</a>
+          	  <a href="{% url 'users:registration_register' %}"> <i class="fa fa-user-circle-o"> </i> {% trans 'Sign Up' %}</a>
           </div>
           {% endif %}
 
@@ -163,8 +163,16 @@
 		{% block footer %}
 		<!-- Start Footer -->
 		<div class="row" id="footer">
-		  <div class="col-xs-12">
-		   &copy; 2020 {% trans "Students Accounting Service" %}
+		  <div class="col-xs-9">
+		    &copy; 2020 {% trans "Students Accounting Service" %}
+		  </div>
+		  <div class="col-xs-3" id="lang-selector" style="text-align: left;">
+		  	<i class="fa fa-globe" id="globe-icon" aria-hidden="true"></i>
+		    <select>
+              <option value="">{{LANGUAGE}}</option>
+              <option value="uk">Українська</option>
+              <option value="en">English</option> 
+            </select>
 		  </div>
 		</div>
 		<!-- End Footer -->

@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
   /* задаємо верхню межу елемента : ширина лінії, тип лінії, колір лінії */
   border-top:  1px solid  #dddddd;
   /* задаємо внутрішню відстань елемента до верхнього краю  */
-  padding-top: 10px;
+  padding-top: 15px;
   text-align: center;
 }
   
@@ -48,16 +48,29 @@ h1, h2, h3, h4, h5, h6 {
 /* Change Language */
 
 #lang-selector {
-  margin-top: 25px;
+  margin-top: -5px;
   margin-left: 0px;
   text-align: right;
+  
 }
 
 #lang-selector select {
   margin: 10;
-  width: 30%;
+  width: 36%;
   height: 30px;
   line-height: 30px;
+  border: none;
+  background-color: white;
+  color: #0060B6;
+  text-decoration: none;
+}
+
+#globe-icon{
+  color: gray; 
+  font-size: 20px; 
+  padding-top: 7px; 
+  margin-left: -20px; 
+  position: absolute;"
 }
 
 /* User's toolbar */

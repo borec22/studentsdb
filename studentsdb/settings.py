@@ -156,6 +156,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #alows registration 
 REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 365
 
 LOGIN_REDIRECT_URL = 'home'
 
@@ -180,7 +181,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-STATIC_URL = '/static[[[/'
+STATIC_URL = '/staticxx/'
 
 PORTAL_URL = 'http://localhost:8000'
 

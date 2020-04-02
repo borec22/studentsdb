@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 def get_language_from_request(request):
 	if request.COOKIES.get('django_language') == 'en':
-		return 'en'
+		return '  English'
 	elif request.COOKIES.get('django_language') == 'uk':
 		return _(u'uk')
 	else:
@@ -17,8 +17,6 @@ def get_current_group(request):
 	"""Returns currently selected group or None"""
 
 	# we remember selected group in a cookie
-	#import pdb; pdb.set_trace()
-	language = request.COOKIES.get('django_language')
 	pk = request.COOKIES.get('current_group')
 
 	if pk:

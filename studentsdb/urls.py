@@ -34,6 +34,8 @@ from .settings import MEDIA_ROOT, DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
 
+from registration.backends.default.views import ActivationView
+
 js_info_dict = {
     'packages': ('students',),
 }
@@ -132,12 +134,20 @@ urlpatterns = [
                   name='password_change'),
 
     url(r'^users/', \
-           include('registration.backends.simple.urls',
+           include('registration.backends.default.urls',
                   namespace='users')),
 
     url(r'^register/complete/$', 
-           RedirectView.as_view(pattern_name='home'),\
-                  name='registration_complete'),
+           TemplateView.as_view(template_name='registration/registration_complete.html'),
+                           name='registration_complete'),
+
+    url(r'^activate/(?P<activation_key>\w+)/$',
+                           ActivationView.as_view(),
+                           name='registration_activate'),
+
+    url(r'^activate/complete/$',
+                           TemplateView.as_view(template_name='registration/activation_complete.html'),
+                           name='registration_activation_complete'),
 
     url(r'^all_users/$', users_list, name='users'),
 

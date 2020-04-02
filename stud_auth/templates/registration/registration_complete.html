@@ -1,19 +1,19 @@
 {% extends "students/base.html" %}
 {% load i18n %}
 
+{% block title %}{% endblock %}
+
 {% block content %}
 <div id="card">
-    <h2> {% trans "Reset your password" %} </h2>
-    <p>   
-       {% trans "Check your email for a link to reset your password." %} <br> 
-       {% trans "If it doesn't appear within a few minutes, check your" %} <br> 
-       {% trans "spam folder." %}
-    </p> 
+	<h2>{% trans "Activation email sent" %}</h2>
+    <p>{% trans "Please check your email to complete the registration process." %}</p>
     <a href="{% url 'users:auth_login' %}" class="btn btn-primary" style="width:320px;"> {% trans "Return to login" %} </a> 
     <p></p>
     <p></p>
+
 </div>
 {% endblock %}
+
 
 {% block footer %}
 		<!-- Start Footer -->
@@ -21,16 +21,23 @@
 		  <div class="col-xs-9">
 		   &copy; 2020 {% trans "Students Accounting Service" %}
 		  </div>
-      <div class="col-xs-3" id="lang-selector" style="text-align: left;">
-        <select>
+		  <div class="col-xs-3" id="lang-selector" style="text-align: left;">
+		    <select>
               <option value="">{{LANGUAGE}}</option>
               <option value="uk">uk</option>
               <option value="en">en</option> 
             </select>
-      </div>
+		  </div>
 		</div>
 		<!-- End Footer -->
 {% endblock footer %}
 
 
-{# This is used by django.contrib.auth #}
+{% comment %}
+**registration/registration_complete.html**
+
+Used after successful completion of the registration form. This
+template has no context variables of its own, and should simply inform
+the user that an email containing account-activation information has
+been sent.
+{% endcomment %}

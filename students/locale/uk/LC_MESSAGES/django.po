@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 09:40+0000\n"
+"POT-Creation-Date: 2020-04-01 18:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Exam"
 msgstr "Іспит"
 
 #: models/exams_model.py:13 templates/exams/exam_list.html:11
-#: templates/students/base.html:122
+#: templates/students/base.html:123
 msgid "Exams"
 msgstr "Іспити"
 
@@ -54,10 +54,10 @@ msgstr "Складають Іспит"
 #: models/groups_model.py:12 models/students_model.py:57
 #: templates/exams/exam_list.html:54 templates/students/base.html:48
 msgid "Group"
-msgstr "Група:"
+msgstr "Група"
 
 #: models/groups_model.py:13 templates/groups/list_group.html:11
-#: templates/students/base.html:121
+#: templates/students/base.html:122
 msgid "Groups"
 msgstr "Групи"
 
@@ -77,7 +77,7 @@ msgstr "Додаткові нотатки"
 msgid "Student"
 msgstr "Студенти"
 
-#: models/students_model.py:11 templates/students/base.html:118
+#: models/students_model.py:11 templates/students/base.html:119
 #: templates/students/students_list.html:6
 msgid "Students"
 msgstr "Студенти"
@@ -154,16 +154,14 @@ msgstr "Видалити"
 msgid "While there are not exams in database."
 msgstr "Поки немає груп у базі даних"
 
-#: templates/exams/exam_list.html:120 templates/exams/exams_add.html:13
-#: templates/exams/exams_delete.html:13 templates/exams/exams_edit.html:13
-#: templates/groups/groups_add.html:12 templates/groups/groups_delete.html:13
-#: templates/groups/groups_edit.html:13 templates/groups/list_group.html:98
-#: templates/students/base.html:11 templates/students/base.html.py:44
-#: templates/students/base.html:166
+#: templates/exams/exams_add.html:13 templates/exams/exams_delete.html:13
+#: templates/exams/exams_edit.html:13 templates/groups/groups_add.html:12
+#: templates/groups/groups_delete.html:13 templates/groups/groups_edit.html:13
+#: templates/students/base.html:11 templates/students/base.html.py:45
+#: templates/students/base.html:84 templates/students/base.html.py:167
 #: templates/students/student_config_delete.html:16
 #: templates/students/students_add.html:12
 #: templates/students/students_edit.html:16
-#: templates/students/students_list.html:113
 msgid "Students Accounting Service"
 msgstr "Сервіс Обліку Студентів"
 
@@ -294,33 +292,33 @@ msgstr "Всі Студенти"
 
 #: templates/students/base.html:66
 msgid "My Account"
-msgstr ""
+msgstr "Мій профіль"
 
 #: templates/students/base.html:67
 msgid "Change Password"
-msgstr ""
+msgstr "Змінити пароль"
 
-#: templates/students/base.html:68
+#: templates/students/base.html:68 templates/students/base.html.py:76
 msgid "Exit"
 msgstr "Exit"
 
-#: templates/students/base.html:95
+#: templates/students/base.html:96
 msgid "Login"
-msgstr "Login"
+msgstr "Log in"
 
-#: templates/students/base.html:98
+#: templates/students/base.html:99
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: templates/students/base.html:120 templates/students/students_list.html:82
+#: templates/students/base.html:121 templates/students/students_list.html:82
 msgid "Journal"
 msgstr "Відвідування"
 
-#: templates/students/base.html:125
+#: templates/students/base.html:126
 msgid "Contact"
 msgstr "Контакт"
 
-#: templates/students/base.html:128
+#: templates/students/base.html:129
 msgid "Users"
 msgstr "Користувачі"
 
@@ -409,13 +407,17 @@ msgstr "Прізвище"
 msgid "Ticket #"
 msgstr "№ Білету"
 
+#: util.py:9
+msgid "en"
+msgstr "English"
+
 #: util.py:11 util.py:13
 msgid "uk"
-msgstr "українська"
+msgstr "Українська"
 
 #: views/contact_admin.py:21
 msgid "Your Email Address"
-msgstr "Ваша Емейл Адреса"
+msgstr "Ваша еmail адреса"
 
 #: views/contact_admin.py:24
 msgid "Email Subject"

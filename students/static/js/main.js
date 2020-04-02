@@ -200,6 +200,14 @@ function initLangSelector(){
 
     return true;
   });
+
+  $('#lang-selector select').mouseenter(function(){
+    $('#lang-selector select').css({"color":"#0000EE", "text-decoration":"underline"});
+  });
+  
+  $('#lang-selector select').mouseleave(function(){
+    $('#lang-selector select').css({"color":"#0060B6", "text-decoration":"none"});
+  });
 };
 
 function profileEditButtonHide(){
