@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 18:48+0000\n"
+"POT-Creation-Date: 2020-04-04 08:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,15 @@ msgstr ""
 #: apps.py:7
 msgid "Students Database"
 msgstr "База студентів"
+
+#: management/commands/stcount.py:11
+msgid "Prints to console number of student related objects in a database."
+msgstr "Виводить у консоль число обєктів студентів, груп чи екзаменів наявних у базі даних."
+
+#: management/commands/stcount.py:18
+#, python-format
+msgid "Number of %ss in database: %d"
+msgstr "Число %ss в базі даних: %d"
 
 #: models/exams_model.py:12
 msgid "Exam"
@@ -407,10 +416,6 @@ msgstr "Прізвище"
 msgid "Ticket #"
 msgstr "№ Білету"
 
-#: util.py:9
-msgid "en"
-msgstr "English"
-
 #: util.py:11 util.py:13
 msgid "uk"
 msgstr "Українська"
@@ -583,6 +588,9 @@ msgstr "Редагування студента відмінено!"
 #: views/views_students.py:215
 msgid "Student deleted successfully!"
 msgstr "Студента успішно видалено!"
+
+#~ msgid "en"
+#~ msgstr "English"
 
 #~ msgid "Logout"
 #~ msgstr "Вийти"

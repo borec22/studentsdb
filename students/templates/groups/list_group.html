@@ -1,6 +1,7 @@
 {% extends 'students/base.html' %}
 
 {% load i18n %}
+{% load pagenav %}
 {% block meta_title %}Список Груп{% endblock meta_title %}
 
 {% block content %}
@@ -68,27 +69,12 @@
 		   {% else %}
 		   <p> {% trans "While there are not groups in database." %} </p>
 		   {% endif %}
-		   <!-- Start Studenrs Listing -->
+
+		   <!-- Start Groups Listing -->
+           {% pagenav groups is_paginated paginator %}
+
 {% endblock content %}
 
-{% block pagination%}
-	{% if groups.has_other_pages %}
-	{% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-	<nav>
-	    <ul class = "pagination">
-		    <li><a href = "{% url 'groups' %}?page=1&amp;order_by={{order_by}}&amp;reverse={{reverse}}">&laquo;</a></li>
-		    {% for p in groups.paginator.page_range %}
-			<li {% if groups.number == p %} class = "active"{% endif %}> 
-				<a href = "{% url 'groups' %}?page={{p}}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">{{p}}</a></li>
-			{% endfor %}
-			<li><a href = "{% url 'groups'%}?page={{ groups.paginator.num_pages }}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">
-			&raquo;</a>
-			</li>
-		</ul>
-	</nav>
-	{% endwith %}
-	{% endif %}
-{% endblock pagination%}
 
 
 		  

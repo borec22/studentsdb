@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 18:48+0000\n"
+"POT-Creation-Date: 2020-04-04 08:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,15 @@ msgstr ""
 
 #: apps.py:7
 msgid "Students Database"
+msgstr ""
+
+#: management/commands/stcount.py:11
+msgid "Prints to console number of student related objects in a database."
+msgstr ""
+
+#: management/commands/stcount.py:18
+#, python-format
+msgid "Number of %ss in database: %d"
 msgstr ""
 
 #: models/exams_model.py:12
@@ -401,10 +410,6 @@ msgstr ""
 
 #: templates/students/students_list.html:44
 msgid "Ticket #"
-msgstr ""
-
-#: util.py:9
-msgid "en"
 msgstr ""
 
 #: util.py:11 util.py:13

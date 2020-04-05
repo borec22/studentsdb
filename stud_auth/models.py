@@ -37,9 +37,3 @@ class StProfile(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
-
-def create_profile(sender, **kwargs):
-	if kwargs['created']:
-		st_profile = StProfile.objects.create(user=kwargs['instance'])
-
-post_save.connect(create_profile, sender=User)
