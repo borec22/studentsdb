@@ -5,12 +5,18 @@ from django.contrib.auth.decorators import login_required
 
 
 def get_language_from_request(request):
-	if request.COOKIES.get('django_language') == 'en':
-		return '  English'
-	elif request.COOKIES.get('django_language') == 'uk':
-		return _(u'uk')
+
+	language = request.COOKIES.get('django_language')
+	if language:
+		if language == 'en':
+			return 'English'
+		elif language == 'uk':
+			return _(u'uk')
+		else:
+			return _(u'uk')
 	else:
 		return _(u'uk')
+
 	
 
 def get_current_group(request):
