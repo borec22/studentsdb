@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     'students',
     'stud_auth',
+    'django_coverage',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -189,6 +190,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..','media')
 
 LOG_FILE = os.path.join(BASE_DIR, 'students.log')
+
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(BASE_DIR, '..', 'coverage')
 
 LOGGING = {
     'version': 1,

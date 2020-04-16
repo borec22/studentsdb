@@ -49,7 +49,7 @@ class ContactForm(forms.Form):
         self.helper.field_class = 'col-sm-10'
 
         # form buttons
-        self.helper.add_input(Submit('second_button', u'Надіслати'))
+        self.helper.add_input(Submit('send', u'Надіслати'))
 
 #contact_admin by class FormView
 
@@ -59,7 +59,7 @@ class ContactAdminView(FormView):
     success_url = 'students/students_list'
 
     def get_success_url(self):
-        return u'%s?status_message=%' % (reverse('contact_admin'), _(u"Message sent successfully!"))
+        return u'%s?status_message=%s' % (reverse('contact_admin'), _(u"Message sent successfully!"))
 
     def form_valid(self, form):
         """This method is called for valid data"""

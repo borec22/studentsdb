@@ -5,6 +5,10 @@ django-crispy-forms==1.8.1
 django-registration-redux==1.2
 social-auth-app-django==3.1.0
 beautifulsoup4==4.8.2
+django-coverage==1.2.4
+coverage==3.7.1
+
+
 
 
 

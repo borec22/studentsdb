@@ -47,16 +47,16 @@ def log_student_deleted_event(sender, **kwargs):
     
     if sender==Student:
         student = kwargs['instance']
-        logger.info("Student delete: %s %s (ID: %d)", student.first_name,\
+        logger.info("Student deleted: %s %s (ID: %d)", student.first_name,\
     	    student.last_name, student.id)
 
     elif sender==Group:
         group = kwargs['instance']
-        logger.info("Group delete: %s (ID: %d)", group.title,\
+        logger.info("Group deleted: %s (ID: %d)", group.title,\
     		         group.id)
     elif sender==Exam:
     	exam = kwargs['instance']
-        logger.info("Exam delete: %s (ID: %d)", exam.subject,\
+        logger.info("Exam deleted: %s (ID: %d)", exam.subject,\
     		         exam.id)
 
 

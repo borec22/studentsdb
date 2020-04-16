@@ -195,7 +195,6 @@ class StudentUpdateView(UpdateView):
             return HttpResponseRedirect(
                 u'%s?status_message=%s' % (reverse('home'), _(u'Editing of student has been cancelled!')))
         else:
-            #import pdb; pdb.set_trace()
             return super(StudentUpdateView, self).post(request, *args, **kwargs) 
 
     @method_decorator(login_required)
