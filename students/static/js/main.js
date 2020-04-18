@@ -210,17 +210,10 @@ function initLangSelector(){
   });
 };
 
-function profileEditButtonHide(){
-  $('#profile_edit_button').click(function(){
-    $('#profile_edit_button').hide();
-  });
-}
-
 $(document).ready(function(){
   initJournal();
   initGroupSelector();
   initDateFields();
   initEditStudentPage();
   initLangSelector();
-  profileEditButtonHide();
 });

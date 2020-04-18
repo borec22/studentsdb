@@ -10,31 +10,31 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 from django.conf import global_settings
+
+from .env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
+from .env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
+from .env_settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET, SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+from .env_settings import SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE, SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE
+from .env_settings import SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE, SOCIAL_AUTH_GOOGLE_PLUS_SCOPE
+from .env_settings import SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API, SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API
+from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from .env_settings import EMAIL_BACKEND, ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_TLS
+from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL
+rom .env_settings import PORTAL_URL
 import os
 
+# in dev envrironment we may not have STATIC_ROOT defined
+try:
+    from .env_settings import STATIC_ROOT
+except ImportError:
+    pass
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o&p$irf4uc6q_sspz(wmtsz431^$bze_e+!ghwqbhta@5ny1^d'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-# email settings
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-ADMIN_EMAIL = 'romanchuk'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'romanchuk.sss22121999@gmail.com'
-EMAIL_HOST_PASSWORD = 'aezakmi22hesoyam22'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
 
 # Application definition
 
@@ -106,37 +106,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '2722702724491610'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f2a9118bb2718a7c8e7f363295641d3d'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '452554037855-sadkv72l3tufnp369f8pgtajvpgetesg.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'yV_U63eSf5KfOMGtI0JAltH3'
-
-# Google OAuth2 (google-oauth2)
-SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-'https://www.googleapis.com/auth/userinfo.email',
-'https://www.googleapis.com/auth/userinfo.profile'
-]
-
-# Google+ SignIn (google-plus)
-SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
-SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
-'https://www.googleapis.com/auth/plus.login',
-'https://www.googleapis.com/auth/userinfo.email',
-'https://www.googleapis.com/auth/userinfo.profile'
-]
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
-SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-# We moved DATABASES variable to db.py module which added to .gitignore
-# so we don't keep mysql passwords in repository
-from .db import DATABASES
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -159,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 365
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/'
 
 LOGIN_URL = 'users:auth_login'
 
@@ -180,14 +149,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-
-STATIC_URL = '/staticxx/'
-
-PORTAL_URL = 'http://localhost:8000'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..','media')
 
 LOG_FILE = os.path.join(BASE_DIR, 'students.log')
 

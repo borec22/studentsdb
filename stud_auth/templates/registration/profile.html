@@ -14,7 +14,7 @@
 {{ user.get_full_name|default:user.username }} 
 
 {% if perms.stud_auth %}
-<a class="btn btn-primary modal-form-link" href = "{% url 'profile_edit' user.id %}" role="button" id="profile_edit_button"> {% trans "Edit" %} </a>
+<a class="btn btn-primary" href = "{% url 'profile_edit' user.stprofile.id %}" role="button" id="profile_edit_button"> {% trans "Edit" %} </a>
 {% endif %}
 
 {% endblock title%}
@@ -76,6 +76,9 @@
     <td> {{ user.date_joined }} </td>
   </tr>
   {% endif %}
+  <tr> 
+    <td> {{ user.stprofile.id }} </td>
+  </tr>
 
 </table>
     

@@ -94,9 +94,7 @@ urlpatterns = [
            login_required(TemplateView.as_view(
                   template_name='registration/profile.html')), \
                   name='profile'),
-    url(r'^users/profile/(?P<pk>[\d]+)/edit/$', \
-           PhotoProfileUpdateViews.as_view(), \
-                  name='profile_edit'),
+    url(r'^users/profile/(?P<pk>\d+)/edit/$', PhotoProfileUpdateViews.as_view(), name='profile_edit'),
     
     url(r'^users/logout/$', 
            auth_views.logout, 

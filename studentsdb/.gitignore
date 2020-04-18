@@ -4,3 +4,4 @@
 *.mo
 *.egg
 students.log
+env_settings.py
